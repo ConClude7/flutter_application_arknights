@@ -37,12 +37,11 @@ class _myPageState extends State<myPage> {
     /* DartHttpUtils().getDio('/api/users', {"userId": "123456789qwer"}); */
     // 登录
 
-    var p = PersistentStorage();
-
     var data = await DartHttpUtils().postJsonDio(
         '/api/users/login', {"userId": "123456789qwer", "passWord": "123456"});
-    print(data);
-    /* print(p.getStorage("token")); */
+    print(data["token"]);
+    await PersistentStorage().setStorage("token", data["token"]);
+    print(await PersistentStorage().getStorage("token"));
   }
 
   @override

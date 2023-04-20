@@ -1,13 +1,24 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import '../common/shared.dart';
 
 class DartHttpUtils {
-  //配置dio，通过BaseOptions
-  final Dio _dio = Dio(BaseOptions(baseUrl: "http://192.168.0.28:210"));
+  static Future<Dio> createDioInstance() async {
+    final token = await PersistentStorage().getStorage("token");
+    final Dio dio = Dio(BaseOptions(
+      baseUrl: "http://192.168.0.100:210",
+      headers: {
+        HttpHeaders.authorizationHeader: token,
+      },
+    ));
+    return dio;
+  }
+
+  final Dio _dio = createDioInstance() as Dio;
 
   //dio的GET请求
   getDio(String url, Map data) async {
-    _dio
+    await _dio
         .get(url,
             data: data,
             options: Options(
@@ -22,19 +33,24 @@ class DartHttpUtils {
 
   //发送POST请求，application/json
   postJsonDio(url, Map data) async {
-    _dio
-        .post(url,
-            data: data,
-            options: Options(
-              contentType: ContentType.json.toString(),
-            ))
-        .then((Response response) {
+    try {
+      final response = await _dio.post(
+        url,
+        data: data,
+        options: Options(
+          contentType: ContentType.json.toString(),
+        ),
+      );
+
       if (response.statusCode == 200) {
-        /*     print(response.data.toString()); */
+        // 将打印语句移到if语句块内部
+        /* print(response.data.toString()); */
         return response.data;
+      } else {
+        print('Failed with status code ${response.statusCode}');
       }
-    }).catchError((error) {
-      print(error.toString());
-    });
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }
