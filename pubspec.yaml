@@ -40,6 +40,7 @@ dependencies:
   json_serializable: any
   shared_preferences: any
   bubble_bottom_bar: any
+  dio: any
 
 dev_dependencies:
   flutter_test:

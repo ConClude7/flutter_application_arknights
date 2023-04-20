@@ -1,8 +1,11 @@
 import 'dart:math';
 import 'dart:ui';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../common/shared.dart';
+import '../../net/httpServe.dart';
 
 class myPage extends StatefulWidget {
   const myPage({super.key});
@@ -13,22 +16,58 @@ class myPage extends StatefulWidget {
 
 class _myPageState extends State<myPage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  void loading() async {
+    // 添加用户
+    /* DartHttpUtils().postJsonDio('/api/users', {
+      "userId": "123456789qwer",
+      "username": "Jhin",
+      "passWord": "123456",
+      "type": "Creater",
+      "email?": "807797697@qq.com",
+      "says": "大家都不是很爱发表言论",
+      "created": "2024-04-18-19:44:00",
+      "updated": "2024-04-18-19:44:00",
+      "lastLogin": "2024-04-18-19:44:00"
+    }); */
+    // 查询用户
+    /* DartHttpUtils().getDio('/api/users', {"userId": "123456789qwer"}); */
+    // 登录
+
+    var p = PersistentStorage();
+
+    var data = await DartHttpUtils().postJsonDio(
+        '/api/users/login', {"userId": "123456789qwer", "passWord": "123456"});
+    print(data);
+    /* print(p.getStorage("token")); */
+  }
+
+  @override
   Widget build(BuildContext context) {
+    loading();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 15.sp),
-          margin: EdgeInsets.only(top: 40.sp, bottom: 20.sp),
+          padding: EdgeInsets.symmetric(horizontal: 25.sp),
+          margin: EdgeInsets.only(top: 50.sp),
           child: Container(
             clipBehavior: Clip.hardEdge,
             width: double.infinity,
             height: 100.sp,
             decoration: BoxDecoration(
-                color: const Color.fromARGB(50, 255, 255, 255),
-                borderRadius: BorderRadius.all(Radius.circular(8.sp))),
+                color: const Color.fromARGB(100, 34, 34, 34),
+                borderRadius: BorderRadius.all(Radius.circular(2.sp)),
+                border: Border.all(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    width: 1.sp,
+                    style: BorderStyle.solid,
+                    strokeAlign: StrokeAlign.inside)),
             child: CustomPaint(
               painter: _DiagonalLinesPainter(),
             ),

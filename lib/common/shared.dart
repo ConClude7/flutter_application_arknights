@@ -20,12 +20,13 @@ class PersistentStorage {
   // 之所以这个没有写在 _init中，是因为SharedPreferences.getInstance是一个异步的方法 需要用await接收它的值
   _initStorage() async {
     // 若_不存在 则创建SharedPreferences实例
-    if (_storage == null) _storage = await SharedPreferences.getInstance();
+    _storage = await SharedPreferences.getInstance();
   }
 
   /// 设置存储
   setStorage(String key, dynamic value) async {
     await _initStorage();
+    _storage = await SharedPreferences.getInstance();
     String type;
     // 监测value的类型 如果是Map和List,则转换成JSON，以字符串进行存储
     if (value is Map || value is List) {
