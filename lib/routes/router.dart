@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/common/shared.dart';
+import 'package:flutter_application_arknights/routes/loginPages/login.dart';
 import 'index.dart';
 
 //配置路由
 
 final Map<String, Widget Function(BuildContext)> routes = {
   '/': (context) => const index(),
+  '/login': (context) => const loginPage(),
 };
 
 //固定写法

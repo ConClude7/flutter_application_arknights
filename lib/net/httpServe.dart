@@ -1,23 +1,49 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/common/global.dart';
+import 'package:flutter_application_arknights/routes/loginPages/login.dart';
 import '../common/shared.dart';
 
 class DartHttpUtils {
-  static Future<Dio> createDioInstance() async {
+  late final Dio _dio;
+
+  createDioInstance(BuildContext context) async {
     final token = await PersistentStorage().getStorage("token");
-    final Dio dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.0.100:210",
+    print("DioGetToken:$token");
+    _dio = Dio(BaseOptions(
+      baseUrl: "http://192.168.0.28:210",
       headers: {
-        HttpHeaders.authorizationHeader: token,
+        HttpHeaders.authorizationHeader: "Bearer $token",
       },
     ));
-    return dio;
+    _dio.interceptors.add(InterceptorsWrapper(
+      onError: (DioError e, handler) async {
+        if (e.response?.statusCode == 401) {
+          // 处理 401 错误
+          print("Token无效,需要重新登录");
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const loginPage()),
+            (route) => false,
+          );
+        } else if (e.response?.statusCode == 200) {}
+      },
+    ));
   }
 
-  final Dio _dio = createDioInstance() as Dio;
+  /* final Dio _dio = Dio(BaseOptions(
+    baseUrl: "http://192.168.0.100:210",
+    headers: {
+      HttpHeaders.authorizationHeader: PersistentStorage().getStorage("token")
+    },
+  )); */
 
   //dio的GET请求
-  getDio(String url, Map data) async {
+  getDio(String url, Map data, BuildContext context) async {
+    await createDioInstance(context);
     await _dio
         .get(url,
             data: data,
@@ -32,7 +58,9 @@ class DartHttpUtils {
   }
 
   //发送POST请求，application/json
-  postJsonDio(url, Map data) async {
+  postJsonDio(url, Map data, BuildContext context) async {
+    await createDioInstance(context);
+
     try {
       final response = await _dio.post(
         url,
@@ -44,13 +72,13 @@ class DartHttpUtils {
 
       if (response.statusCode == 200) {
         // 将打印语句移到if语句块内部
-        /* print(response.data.toString()); */
+        print(response.data.toString());
         return response.data;
-      } else {
-        print('Failed with status code ${response.statusCode}');
+      } else if (response.statusCode == 401) {
+        print("Token无效,需要重新登录");
       }
     } catch (e) {
-      print('Error: $e');
+      print(e.toString());
     }
   }
 }

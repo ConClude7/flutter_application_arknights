@@ -21,27 +21,10 @@ class _myPageState extends State<myPage> {
   }
 
   void loading() async {
-    // 添加用户
-    /* DartHttpUtils().postJsonDio('/api/users', {
-      "userId": "123456789qwer",
-      "username": "Jhin",
-      "passWord": "123456",
-      "type": "Creater",
-      "email?": "807797697@qq.com",
-      "says": "大家都不是很爱发表言论",
-      "created": "2024-04-18-19:44:00",
-      "updated": "2024-04-18-19:44:00",
-      "lastLogin": "2024-04-18-19:44:00"
-    }); */
     // 查询用户
-    /* DartHttpUtils().getDio('/api/users', {"userId": "123456789qwer"}); */
-    // 登录
-
-    var data = await DartHttpUtils().postJsonDio(
-        '/api/users/login', {"userId": "123456789qwer", "passWord": "123456"});
-    print(data["token"]);
-    await PersistentStorage().setStorage("token", data["token"]);
-    print(await PersistentStorage().getStorage("token"));
+    var data = await DartHttpUtils()
+        .getDio('/api/users', {"userId": "123456789qwer"}, context);
+    print(data);
   }
 
   @override
@@ -70,6 +53,38 @@ class _myPageState extends State<myPage> {
             child: CustomPaint(
               painter: _DiagonalLinesPainter(),
             ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () async {},
+          child: Container(
+            width: 100.sp,
+            height: 100.sp,
+            color: Colors.white,
+            child: Text("登录"),
+          ),
+        ),
+        GestureDetector(
+          onTap: () async {
+            var state = await PersistentStorage().removeStorage("token");
+            print("退出登陆:$state");
+          },
+          child: Container(
+            width: 100.sp,
+            height: 100.sp,
+            color: Colors.white,
+            child: Text("退出登录"),
+          ),
+        ),
+        GestureDetector(
+          onTap: () async {
+            Navigator.pushNamed(context, '/register');
+          },
+          child: Container(
+            width: 100.sp,
+            height: 100.sp,
+            color: Colors.white,
+            child: Text("注册"),
           ),
         )
       ],
