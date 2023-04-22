@@ -42,6 +42,7 @@ dependencies:
   bubble_bottom_bar: ^2.0.0
   dio: ^5.1.1
   flutter_login: ^4.1.1
+  particles_flutter: ^0.1.4
 
 dev_dependencies:
   flutter_test:
@@ -75,7 +76,7 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
+  # To add custom fonts to your application, add a fonts rsection here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
@@ -84,7 +85,10 @@ flutter:
     - family: PlayfairDisplay
       fonts:
         - asset: fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
-        #- asset: fonts/SourceHanSans/SourceHanSansCN-Regular.ttf
+
+    - family: SourceHanSans
+      fonts:
+        - asset: fonts/SourceHanSans/SourceHanSansCN-Regular.ttf
 
   #   - family: Schyler
   #     fonts:

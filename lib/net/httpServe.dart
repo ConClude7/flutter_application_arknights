@@ -14,7 +14,7 @@ class DartHttpUtils {
     final token = await PersistentStorage().getStorage("token");
     print("DioGetToken:$token");
     _dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.0.28:210",
+      baseUrl: "http://192.168.0.100:210",
       headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       },

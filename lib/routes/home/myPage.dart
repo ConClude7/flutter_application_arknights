@@ -3,9 +3,12 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:particles_flutter/component/painter.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 
 import '../../common/shared.dart';
 import '../../net/httpServe.dart';
+import '../../widgets/3dCard.dart';
 
 class myPage extends StatefulWidget {
   const myPage({super.key});
@@ -22,9 +25,9 @@ class _myPageState extends State<myPage> {
 
   void loading() async {
     // 查询用户
-    var data = await DartHttpUtils()
+    /* var data = await DartHttpUtils()
         .getDio('/api/users', {"userId": "123456789qwer"}, context);
-    print(data);
+    print(data); */
   }
 
   @override
@@ -51,42 +54,80 @@ class _myPageState extends State<myPage> {
                     style: BorderStyle.solid,
                     strokeAlign: StrokeAlign.inside)),
             child: CustomPaint(
-              painter: _DiagonalLinesPainter(),
+                painter: _DiagonalLinesPainter(),
+                child: Stack(
+                  children: [
+                    Positioned(
+                        child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15.sp),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                "Jhin",
+                                style: TextStyle(
+                                    fontSize: 25.sp,
+                                    color: const Color.fromARGB(
+                                        200, 229, 229, 229)),
+                              ),
+                              Text(
+                                "No:80797697",
+                                style: TextStyle(
+                                    fontSize: 10.sp,
+                                    color: const Color.fromARGB(
+                                        170, 252, 163, 17)),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "    这个舞台被我踩在了脚下，但我也把他带到了新的高度。",
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              fontFamily: "SourceHanSans",
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                "入职时间：2023年4月21日",
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontFamily: "SourceHanSans",
+                                    color: const Color.fromARGB(
+                                        100, 229, 229, 229)),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ))
+                  ],
+                )),
+          ),
+        ),
+        /*  ThreeDCard(
+          elevation: 10,
+          rotateX: 5,
+          rotateY: 20,
+          child: Container(
+            width: 200,
+            height: 200,
+            color: Colors.blue,
+            child: Text(
+              'Hello, World!',
+              style: TextStyle(color: Colors.white),
             ),
           ),
-        ),
-        GestureDetector(
-          onTap: () async {},
-          child: Container(
-            width: 100.sp,
-            height: 100.sp,
-            color: Colors.white,
-            child: Text("登录"),
-          ),
-        ),
-        GestureDetector(
-          onTap: () async {
-            var state = await PersistentStorage().removeStorage("token");
-            print("退出登陆:$state");
-          },
-          child: Container(
-            width: 100.sp,
-            height: 100.sp,
-            color: Colors.white,
-            child: Text("退出登录"),
-          ),
-        ),
-        GestureDetector(
-          onTap: () async {
-            Navigator.pushNamed(context, '/register');
-          },
-          child: Container(
-            width: 100.sp,
-            height: 100.sp,
-            color: Colors.white,
-            child: Text("注册"),
-          ),
-        )
+        ), */
       ],
     );
   }
@@ -100,7 +141,7 @@ class _DiagonalLinesPainter extends CustomPainter {
       ..strokeWidth = 1.sp;
 
     final paintRight = Paint()
-      ..color = const Color.fromARGB(180, 255, 255, 255)
+      ..color = const Color.fromARGB(170, 252, 163, 17)
       ..strokeWidth = 3.sp;
 
     // 右下角斜线

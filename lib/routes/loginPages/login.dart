@@ -98,6 +98,7 @@ class _loginPageState extends State<loginPage> {
       showDebugButtons: false,
       // 忘记密码功能
       hideForgotPasswordButton: false,
+      messages: LoginMessages(),
     );
   }
 }
