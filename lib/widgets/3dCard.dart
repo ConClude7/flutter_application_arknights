@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
 class ThreeDCard extends StatelessWidget {
@@ -22,12 +23,13 @@ class ThreeDCard extends StatelessWidget {
       alignment: FractionalOffset.center,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          color: Colors.white38,
+          /* border: Border.all(width: 1.sp, color: Colors.white54), */
+          borderRadius: BorderRadius.circular(1.sp),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              offset: const Offset(0, 3),
+              color: Colors.white24,
+              offset: const Offset(0, 1),
               blurRadius: elevation,
             ),
           ],

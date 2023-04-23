@@ -3,7 +3,9 @@ import 'package:flutter_application_arknights/net/httpServe.dart';
 import 'package:flutter_login/flutter_login.dart';
 
 import '../../common/shared.dart';
+import '../../models/user.dart';
 import '../index.dart';
+import '../../common/global.dart';
 
 class loginPage extends StatefulWidget {
   const loginPage({super.key});

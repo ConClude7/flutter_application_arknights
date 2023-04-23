@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter_application_arknights/widgets/lineBackground.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../models/user.dart';
+import '../net/httpServe.dart';
 import '../widgets/bubbleBottomItem.dart';
 import './home/favoritePage.dart';
 import './home/homePage.dart';
 import './home/myPage.dart';
 import './home/simPage.dart';
+import '../common/global.dart';
 
 class index extends StatefulWidget {
   const index({super.key});
@@ -27,7 +30,10 @@ class _indexState extends State<index> {
     super.initState();
     currentIndex = 0;
     whatPage = homePage();
+    loading();
   }
+
+  void loading() async {}
 
   void changePage(int? index) {
     setState(() {

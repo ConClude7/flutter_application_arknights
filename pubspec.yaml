@@ -43,6 +43,9 @@ dependencies:
   dio: ^5.1.1
   flutter_login: ^4.1.1
   particles_flutter: ^0.1.4
+  flutter_swiper: ^1.1.6
+  carousel_slider: ^4.2.1
+  flutter_particles: ^1.0.0+7
 
 dev_dependencies:
   flutter_test:

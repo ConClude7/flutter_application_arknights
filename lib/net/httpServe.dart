@@ -14,7 +14,7 @@ class DartHttpUtils {
     final token = await PersistentStorage().getStorage("token");
     print("DioGetToken:$token");
     _dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.0.100:210",
+      baseUrl: "http://192.168.0.28:210",
       headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       },
@@ -24,6 +24,7 @@ class DartHttpUtils {
         if (e.response?.statusCode == 401) {
           // 处理 401 错误
           print("Token无效,需要重新登录");
+          PersistentStorage().removeStorage("token");
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const loginPage()),
@@ -42,19 +43,17 @@ class DartHttpUtils {
   )); */
 
   //dio的GET请求
-  getDio(String url, Map data, BuildContext context) async {
+  getDio(String url, BuildContext context) async {
     await createDioInstance(context);
-    await _dio
-        .get(url,
-            data: data,
-            options: Options(
-              contentType: ContentType.json.toString(),
-            ))
-        .then((Response response) {
-      if (response.statusCode == 200) {
-        print(response.data.toString());
-      }
-    });
+    final response = await _dio.get(url,
+        options: Options(
+          contentType: ContentType.json.toString(),
+        ));
+
+    if (response.statusCode == 200) {
+      print(response.data.toString());
+      return response.data;
+    }
   }
 
   //发送POST请求，application/json
