@@ -3,7 +3,7 @@ import 'package:flutter_particles/particles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
-Widget lineBackground = CircularParticle(
+/* Widget lineBackground = CircularParticle(
   key: UniqueKey(),
   awayRadius: 100,
   numberOfParticles: 100,
@@ -16,11 +16,11 @@ Widget lineBackground = CircularParticle(
   isRandSize: true,
   isRandomColor: false,
   awayAnimationCurve: Curves.fastOutSlowIn,
-  awayAnimationDuration: const Duration(microseconds: 300),
+  awayAnimationDuration: const Duration(milliseconds: 300),
   enableHover: false,
   hoverColor: Colors.white,
   hoverRadius: 90,
   connectDots: true, //not recommended
-);
+); */
 
-/* Widget lineBackground = Particles(30, const Color.fromARGB(20, 255, 255, 255)); */
+Widget lineBackground = Particles(20, const Color.fromARGB(20, 255, 255, 255));
