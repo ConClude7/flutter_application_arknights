@@ -45,7 +45,6 @@ class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
-    _onLoading();
     return Container(
         width: double.infinity,
         height: double.infinity,
