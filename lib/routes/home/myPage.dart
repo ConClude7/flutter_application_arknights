@@ -1,18 +1,10 @@
-import 'dart:math';
-import 'dart:ui';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/models/index.dart';
 import 'package:flutter_application_arknights/routes/home/setting.dart';
 import 'package:flutter_application_arknights/widgets/userCard.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:particles_flutter/component/painter.dart';
-import 'package:particles_flutter/particles_flutter.dart';
-
-import '../../common/shared.dart';
+import 'package:loader_skeleton/loader_skeleton.dart';
 import '../../net/httpServe.dart';
-import '../../widgets/3dCard.dart';
-import '../../widgets/refreshing.dart';
 
 class myPage extends StatefulWidget {
   const myPage({super.key});
@@ -56,7 +48,7 @@ class _myPageState extends State<myPage> {
                   width: double.infinity,
                   padding: pagePadding,
                   margin: EdgeInsets.only(top: 20.sp),
-                  child: settingCards(),
+                  child: const settingCards(),
                 )
               ],
             );
@@ -64,8 +56,16 @@ class _myPageState extends State<myPage> {
             return Text("${snapshot.error}");
           }
           //等待进度条.
-          return Center(
-            child: refreshWidget,
+          return Column(
+            children: [
+              SizedBox(
+                height: 50.sp,
+              ),
+              DarkCardSkeleton(
+                isCircularImage: true,
+                isBottomLinesActive: true,
+              )
+            ],
           );
         });
   }

@@ -90,7 +90,7 @@ class _BackgroundPainter extends CustomPainter {
 
     // Create a list of random points
     for (double y = 0; y < size.height; y += 10) {
-      for (double x = 0; x < size.width; x += 10) {
+      for (double x = 0; x < size.width; x += 9) {
         points.add(Offset(x, y));
       }
     }

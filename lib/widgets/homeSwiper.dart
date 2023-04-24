@@ -24,6 +24,7 @@ class _homeSwiperState extends State<homeSwiper> {
       alignment: Alignment.center,
       children: [
         Swiper(
+          curve: Curves.easeInOut,
           autoplay: true,
           autoplayDelay: 5000,
           viewportFraction: 1,

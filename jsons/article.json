@@ -1,0 +1,14 @@
+{
+  "author": "作者",
+  "title": "标题",
+  "content": "内容",
+  "images": ["图片地址", "图片地址"],
+  "keyWord": ["关键词", "关键词"],
+  "clicks": 10,
+  "talks": 8,
+  "deleted": false,
+  "createTIme": "2023年4月24日13点49分00秒",
+  "updateTime": "2023年4月24日13点49分00秒",
+  "lastTalkTime": "2023年4月24日13点49分00秒",
+  "articleState": "上传成功"
+}

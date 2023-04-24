@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
               title: 'Flutter Demo',
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
+                  /* brightness: Brightness.dark, */
                   primarySwatch: createMaterialColor(
                       const Color.fromARGB(255, 20, 33, 61)),
                   fontFamily: "PlayfairDisplay",

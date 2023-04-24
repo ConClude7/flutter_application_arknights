@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:math';
+import 'package:getwidget/getwidget.dart';
 
 import '../../widgets/3dCard.dart';
 
@@ -38,7 +37,25 @@ class _settingCardsState extends State<settingCards> {
           title:
               // ignore: unnecessary_null_comparison
               PersistentStorage().getStorage("token") == null ? "立即登录" : "退出登录",
-          onTap: () {},
+          onTap: () {
+            PersistentStorage().removeStorage("token");
+            GFToast.showToast("退出成功", context,
+                toastPosition: GFToastPosition.BOTTOM,
+                toastBorderRadius: 1.sp,
+                /* backgroundColor: const Color.fromARGB(200, 20, 31, 61), */
+                /* border: Border.all(width: 1.sp, color: Colors.white38), */
+                textStyle: TextStyle(
+                  color: const Color.fromARGB(255, 252, 163, 17),
+                  fontFamily: "SourceHanSans",
+                  fontSize: 15.sp,
+                ));
+
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              '/login',
+              (route) => false,
+            );
+          },
         )
 
         /* Transform.scale(
