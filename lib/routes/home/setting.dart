@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/common/shared.dart';
+import 'package:flutter_application_arknights/routes/home/myPage.dart';
+import 'package:flutter_application_arknights/routes/index.dart';
+import 'package:flutter_application_arknights/routes/pages/article.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/getwidget.dart';
+import '../../widgets/pageAnimation.dart';
 
 import '../../widgets/3dCard.dart';
 
@@ -22,6 +26,29 @@ class _settingCardsState extends State<settingCards> {
       spacing: 10.sp,
       runSpacing: 5.sp,
       children: [
+        settingCardBuild(
+          width: 175.sp,
+          height: 60.sp,
+          icon: Icons.document_scanner,
+          title: "发表文章",
+          onTap: () {
+            Navigator.push(
+                context,
+                EnterExitRoute(
+                    exitPage: const index(
+                      settingPage: true,
+                    ),
+                    enterPage: const articlePage()));
+          },
+        ),
+        settingCardBuild(
+          width: 175.sp,
+          height: 60.sp,
+          rotateY: 15.sp,
+          icon: Icons.edit,
+          title: "文章管理",
+          onTap: () {},
+        ),
         settingCardBuild(
           width: 150.sp,
           height: 60.sp,

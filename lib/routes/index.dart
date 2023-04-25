@@ -1,46 +1,48 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter_application_arknights/widgets/lineBackground.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../models/user.dart';
-import '../net/httpServe.dart';
+import '../widgets/lineBackground.dart';
 import '../widgets/bubbleBottomItem.dart';
 import './home/favoritePage.dart';
 import './home/homePage.dart';
 import './home/myPage.dart';
 import './home/simPage.dart';
-import '../common/global.dart';
 
 class index extends StatefulWidget {
-  const index({super.key});
+  final bool? settingPage;
+
+  const index({super.key, this.settingPage = false});
 
   @override
   State<index> createState() => _indexState();
 }
 
 class _indexState extends State<index> {
-  late int currentIndex;
   late Widget whatPage;
-
+  late int currentIndex;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    currentIndex = 0;
-    whatPage = homePage();
     loading();
   }
 
-  void loading() async {}
+  void loading() async {
+    if (widget.settingPage!) {
+      currentIndex = 3;
+      whatPage = const myPage();
+      changePage(currentIndex);
+    } else {
+      currentIndex = 0;
+      whatPage = const homePage();
+    }
+  }
 
   void changePage(int? index) {
     setState(() {
       currentIndex = index!;
       switch (currentIndex) {
         case 0:
-          whatPage = homePage();
+          whatPage = const homePage();
           break;
         case 1:
           whatPage = simPage();
@@ -49,7 +51,7 @@ class _indexState extends State<index> {
           whatPage = favoritePage();
           break;
         case 3:
-          whatPage = myPage();
+          whatPage = const myPage();
           break;
         default:
       }
@@ -66,7 +68,7 @@ class _indexState extends State<index> {
           height: double.infinity,
           color: const Color.fromARGB(255, 52, 52, 52),
           child: CustomPaint(
-            painter: _BackgroundPainter(),
+            painter: BackgroundPainter(),
             child: DefaultTextStyle(
                 style: const TextStyle(
                     fontFamily: "PlayfairDisplay",
@@ -80,32 +82,4 @@ class _indexState extends State<index> {
           )),
     );
   }
-}
-
-class _BackgroundPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final pointRadius = 2.sp;
-    final points = <Offset>[];
-
-    // Create a list of random points
-    for (double y = 0; y < size.height; y += 10) {
-      for (double x = 0; x < size.width; x += 9) {
-        points.add(Offset(x, y));
-      }
-    }
-
-    // Draw the points on the canvas
-    canvas.drawPoints(
-        PointMode.points,
-        points,
-        Paint()
-          ..isAntiAlias = true
-          ..color = const Color.fromARGB(20, 229, 229, 229)
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = pointRadius);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
