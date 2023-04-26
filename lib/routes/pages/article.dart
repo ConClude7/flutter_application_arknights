@@ -99,8 +99,7 @@ Future<void> upLoadImage(
     try {
       final response = await DartHttpUtils()
           .postFileDio("/api/articles/images", formData, context);
-      // ignore: avoid_print
-      print(response);
+      print("res:" + response.toString());
     } catch (e) {
       // ignore: avoid_print
       print(e.toString());
