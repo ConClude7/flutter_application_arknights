@@ -4,11 +4,16 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/common/shared.dart';
+import 'package:flutter_application_arknights/net/httpServe.dart';
+import 'package:flutter_application_arknights/widgets/myToast.dart';
 import 'package:http_multi_server/http_multi_server.dart';
 import 'package:flutter_particles/particles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 import '../../widgets/lineBackground.dart';
@@ -27,7 +32,7 @@ class _articlePageState extends State<articlePage> {
   final imageController = MultiImagePickerController(
       maxImages: 9,
       withData: true,
-      allowedImageTypes: ['png', 'jpg', 'jpeg'],
+      allowedImageTypes: ['png', 'jpg', 'jpeg', 'gif'],
       images: <ImageFile>[]);
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class _articlePageState extends State<articlePage> {
           actions: [
             GFButton(
               onPressed: () async {
-                upLoadImage(imageController);
+                upLoadImage(context, imageController);
               },
               text: "发表",
               type: GFButtonType.transparent,
@@ -68,18 +73,41 @@ class _articlePageState extends State<articlePage> {
   }
 }
 
-Future<void> upLoadImage(MultiImagePickerController imageController) async {
-  List imagesFiles = [];
+// 图片上传
+Future<void> upLoadImage(
+    BuildContext context, MultiImagePickerController imageController) async {
+  FormData formData = FormData();
+  List<MultipartFile> imagesFiles = [];
   final getImages = imageController.images;
+
+  List<String> imageNames = [];
   for (ImageFile image in getImages) {
-    Uint8List byteData = await image.bytes!;
-    List<int> imageData = await byteData.buffer.asInt8List();
-    print("ImageData：" + imageData.toString());
-    imagesFiles
-        .add(await MultipartFile.fromBytes(imageData, filename: image.name));
+    if (image.hasPath) {
+      Uint8List byteData = image.bytes!;
+      imageNames.add(image.name);
+      imagesFiles.add(MultipartFile.fromBytes(byteData, filename: image.name));
+    }
   }
-  FormData formData = FormData.fromMap({"images": imagesFiles});
-  print(await formData.toString());
+
+  List<String> nameSet = imageNames.toSet().toList();
+  print(nameSet);
+
+  if (nameSet.length == getImages.length) {
+    List<MapEntry<String, MultipartFile>> formDataFiles = List.generate(
+        imagesFiles.length, (index) => MapEntry("images", imagesFiles[index]));
+    formData.files.addAll(formDataFiles);
+    try {
+      final response = await DartHttpUtils()
+          .postFileDio("/api/articles/images", formData, context);
+      // ignore: avoid_print
+      print(response);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+    }
+  } else {
+    myToast.warning(context, "请勿上传重复的图片", null);
+  }
 }
 
 Widget appBarBackground(BuildContext context) {

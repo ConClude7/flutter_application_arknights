@@ -3,6 +3,7 @@ import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/routes/home/myPage.dart';
 import 'package:flutter_application_arknights/routes/index.dart';
 import 'package:flutter_application_arknights/routes/pages/article.dart';
+import 'package:flutter_application_arknights/widgets/myToast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/getwidget.dart';
 import '../../widgets/pageAnimation.dart';
@@ -66,22 +67,13 @@ class _settingCardsState extends State<settingCards> {
               PersistentStorage().getStorage("token") == null ? "立即登录" : "退出登录",
           onTap: () {
             PersistentStorage().removeStorage("token");
-            GFToast.showToast("退出成功", context,
-                toastPosition: GFToastPosition.BOTTOM,
-                toastBorderRadius: 1.sp,
-                /* backgroundColor: const Color.fromARGB(200, 20, 31, 61), */
-                /* border: Border.all(width: 1.sp, color: Colors.white38), */
-                textStyle: TextStyle(
-                  color: const Color.fromARGB(255, 252, 163, 17),
-                  fontFamily: "SourceHanSans",
-                  fontSize: 15.sp,
-                ));
 
             Navigator.pushNamedAndRemoveUntil(
               context,
               '/login',
               (route) => false,
             );
+            myToast.success(context, "退出登录", null);
           },
         )
 

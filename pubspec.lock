@@ -443,6 +443,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.4"
+  motion_toast:
+    dependency: "direct main"
+    description:
+      name: motion_toast
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.6.6"
   multi_image_picker_view:
     dependency: "direct main"
     description:

@@ -12,6 +12,7 @@ class DartHttpUtils {
 
   createDioInstance(BuildContext context) async {
     final token = await PersistentStorage().getStorage("token");
+    // ignore: avoid_print
     print("DioGetToken:$token");
     _dio = Dio(BaseOptions(
       baseUrl: "http://192.168.0.28:210",
@@ -23,6 +24,7 @@ class DartHttpUtils {
       onError: (DioError e, handler) async {
         if (e.response?.statusCode == 401) {
           // 处理 401 错误
+          // ignore: avoid_print
           print("Token无效,需要重新登录");
           PersistentStorage().removeStorage("token");
           Navigator.pushAndRemoveUntil(
@@ -51,6 +53,7 @@ class DartHttpUtils {
         ));
 
     if (response.statusCode == 200) {
+      // ignore: avoid_print
       print(response.data.toString());
       return response.data;
     }
@@ -59,7 +62,6 @@ class DartHttpUtils {
   //发送POST请求，application/json
   postJsonDio(url, Map data, BuildContext context) async {
     await createDioInstance(context);
-
     try {
       final response = await _dio.post(
         url,
@@ -68,15 +70,43 @@ class DartHttpUtils {
           contentType: ContentType.json.toString(),
         ),
       );
-
       if (response.statusCode == 200) {
         // 将打印语句移到if语句块内部
+        // ignore: avoid_print
         print(response.data.toString());
         return response.data;
       } else if (response.statusCode == 401) {
+        // ignore: avoid_print
         print("Token无效,需要重新登录");
       }
     } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+    }
+  }
+
+  //发送POST请求，application/json
+  postFileDio(url, FormData data, BuildContext context) async {
+    await createDioInstance(context);
+    try {
+      final response = await _dio.post(
+        url,
+        data: data,
+        options: Options(
+          headers: {HttpHeaders.contentTypeHeader: "multipart/form-data"},
+        ),
+      );
+      if (response.statusCode == 200) {
+        // 将打印语句移到if语句块内部
+        // ignore: avoid_print
+        print(response.data.toString());
+        return response.data;
+      } else if (response.statusCode == 401) {
+        // ignore: avoid_print
+        print("Token无效,需要重新登录");
+      }
+    } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }
