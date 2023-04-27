@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_arknights/widgets/lineBackground.dart';
-import '../widgets/lineBackground.dart';
-import '../widgets/bubbleBottomItem.dart';
-import './home/favoritePage.dart';
-import './home/homePage.dart';
-import './home/myPage.dart';
-import './home/simPage.dart';
+import 'package:flutter_application_arknights/widgets/common/lineBackground.dart';
+import '../../widgets/common/lineBackground.dart';
+import '../../widgets/indexPages/bubbleBottomItem.dart';
+import 'favoritePage.dart';
+import 'homePage.dart';
+import 'myPage.dart';
+import 'simPage.dart';
 
 class index extends StatefulWidget {
   final bool? settingPage;

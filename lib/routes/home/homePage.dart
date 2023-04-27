@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/models/index.dart';
 import 'package:flutter_application_arknights/net/httpServe.dart';
-import 'package:flutter_application_arknights/widgets/homeCard.dart';
-import 'package:flutter_application_arknights/widgets/homeSwiper.dart';
+import 'package:flutter_application_arknights/widgets/common/articleCard.dart';
+import 'package:flutter_application_arknights/widgets/indexPages/homeSwiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_skeleton/loader_skeleton.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -66,7 +66,7 @@ class _homePageState extends State<homePage> {
                   physics: const BouncingScrollPhysics(),
                   slivers: <Widget>[
                     SliverAppBar(
-                      expandedHeight: 150.sp,
+                      expandedHeight: 250.sp,
                       flexibleSpace:
                           const FlexibleSpaceBar(background: homeSwiper()),
                       floating: false,
@@ -75,40 +75,7 @@ class _homePageState extends State<homePage> {
                     ),
                     SliverList(
                       delegate: SliverChildListDelegate(
-                        List.generate(
-                            10,
-                            (index) => Container(
-                                  width: double.infinity,
-                                  height: 100.sp,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 25.sp),
-                                  margin: EdgeInsets.only(
-                                      top: 10.sp, bottom: 10.sp),
-                                  /* color: Colors.white, */
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Dr.RaBBit@$index"),
-                                            SizedBox(
-                                                width: double.infinity,
-                                                height: 2.sp,
-                                                child: GradientLine(
-                                                  color: Colors.white,
-                                                )),
-                                          ],
-                                        )
-                                      ]),
-                                )),
+                        List.generate(10, (index) => articleCard(index: index)),
                       ),
                     ),
                   ],

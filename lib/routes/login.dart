@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/net/httpServe.dart';
 import 'package:flutter_login/flutter_login.dart';
 
-import '../../common/shared.dart';
-import '../../models/user.dart';
-import '../index.dart';
-import '../../common/global.dart';
+import '../common/shared.dart';
 
 class loginPage extends StatefulWidget {
   const loginPage({super.key});
@@ -45,7 +42,7 @@ class _loginPageState extends State<loginPage> {
 // 登录
   Future<String?> _authUser(LoginData data) async {
     final res = await DartHttpUtils().postJsonDio('/api/users/login',
-        {"userId": data.name, "passWord": data.password}, context);
+        {"username": data.name, "passWord": data.password}, context);
     await PersistentStorage().setStorage("token", res["token"]);
     if (res['message'] == "Success") {
       return null;
@@ -61,8 +58,7 @@ class _loginPageState extends State<loginPage> {
     final res = await DartHttpUtils().postJsonDio(
         '/api/users/register',
         {
-          "userId": data.name,
-          "username": "Null",
+          "username": data.name,
           "passWord": data.password,
           "type": "User",
           "email": "",

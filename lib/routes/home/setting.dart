@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/common/shared.dart';
-import 'package:flutter_application_arknights/routes/home/myPage.dart';
-import 'package:flutter_application_arknights/routes/index.dart';
+import 'package:flutter_application_arknights/routes/home/index.dart';
 import 'package:flutter_application_arknights/routes/pages/article.dart';
-import 'package:flutter_application_arknights/widgets/myToast.dart';
+import 'package:flutter_application_arknights/routes/pages/articleList.dart';
+import 'package:flutter_application_arknights/widgets/common/myToast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getwidget/getwidget.dart';
-import '../../widgets/pageAnimation.dart';
+import '../../widgets/function/pageAnimation.dart';
 
-import '../../widgets/3dCard.dart';
+import '../../widgets/common/3dCard.dart';
 
 class settingCards extends StatefulWidget {
   const settingCards({super.key});
@@ -24,12 +23,12 @@ class _settingCardsState extends State<settingCards> {
       direction: Axis.horizontal,
       alignment: WrapAlignment.spaceBetween,
       runAlignment: WrapAlignment.start,
-      spacing: 10.sp,
-      runSpacing: 5.sp,
+      spacing: 20.sp,
+      runSpacing: 10.sp,
       children: [
         settingCardBuild(
-          width: 175.sp,
-          height: 60.sp,
+          width: 300.sp,
+          height: 120.sp,
           icon: Icons.document_scanner,
           title: "发表文章",
           onTap: () {
@@ -43,24 +42,32 @@ class _settingCardsState extends State<settingCards> {
           },
         ),
         settingCardBuild(
-          width: 175.sp,
-          height: 60.sp,
+          width: 300.sp,
+          height: 120.sp,
           rotateY: 15.sp,
           icon: Icons.edit,
           title: "文章管理",
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                EnterExitRoute(
+                    exitPage: const index(
+                      settingPage: true,
+                    ),
+                    enterPage: const articleListPage()));
+          },
         ),
         settingCardBuild(
-          width: 150.sp,
-          height: 60.sp,
+          width: 250.sp,
+          height: 120.sp,
           icon: Icons.bug_report,
           title: "上报Bug",
           onTap: () {},
         ),
         settingCardBuild(
           rotateY: 15,
-          width: 200.sp,
-          height: 60.sp,
+          width: 350.sp,
+          height: 120.sp,
           icon: Icons.follow_the_signs,
           title:
               // ignore: unnecessary_null_comparison
@@ -128,14 +135,14 @@ class settingCardBuild extends StatelessWidget {
                   child: Text(
                     title,
                     style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 35.sp,
                         fontWeight: FontWeight.bold,
                         color: const Color.fromARGB(255, 34, 34, 34)),
                   ),
                 ),
                 Icon(
                   icon,
-                  size: 50.sp,
+                  size: 80.sp,
                   color: const Color.fromARGB(100, 52, 52, 52),
                 )
               ],

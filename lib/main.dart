@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_arknights/common/global.dart';
-import 'package:flutter_application_arknights/widgets/createColor.dart';
+import 'package:flutter_application_arknights/widgets/function/createColor.dart';
 
 import './routes/router.dart';
 
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(412, 892),
+        designSize: const Size(720, 1280),
         builder: (((context, child) => MaterialApp(
               title: 'Flutter Demo',
               debugShowCheckedModeBanner: false,

@@ -9,7 +9,6 @@ Widget userCard(pagePadding, user) {
     child: Container(
       clipBehavior: Clip.hardEdge,
       width: double.infinity,
-      height: 100.sp,
       decoration: BoxDecoration(
           color: const Color.fromARGB(100, 34, 34, 34),
           borderRadius: BorderRadius.all(Radius.circular(2.sp)),
@@ -37,24 +36,27 @@ Widget userCard(pagePadding, user) {
                         Text(
                           user.username,
                           style: TextStyle(
-                              fontSize: 25.sp,
+                              fontSize: 50.sp,
                               color: const Color.fromARGB(200, 229, 229, 229)),
                         ),
                         Text(
-                          "No:${user.userId}",
+                          "No.   ",
                           style: TextStyle(
-                              fontSize: 10.sp,
+                              fontSize: 20.sp,
                               color: const Color.fromARGB(170, 252, 163, 17)),
                         ),
                       ],
                     ),
-                    Text(
-                      "    ${user.says}",
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        fontFamily: "SourceHanSans",
+                    Container(
+                      margin: EdgeInsets.only(bottom: 40.sp),
+                      child: Text(
+                        "    ${user.says}",
+                        style: TextStyle(
+                          fontSize: 30.sp,
+                          fontFamily: "SourceHanSans",
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               )),
@@ -64,7 +66,7 @@ Widget userCard(pagePadding, user) {
                 child: Text(
                   "入职时间：${user.created.substring(0, user.created.indexOf('日'))}",
                   style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 24.sp,
                       fontFamily: "SourceHanSans",
                       color: const Color.fromARGB(100, 229, 229, 229)),
                 ),
@@ -80,7 +82,7 @@ class _DiagonalLinesPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = const Color.fromARGB(180, 255, 255, 255)
-      ..strokeWidth = 1.sp;
+      ..strokeWidth = 2.sp;
 
     final paintRight = Paint()
       ..color = const Color.fromARGB(170, 252, 163, 17)
@@ -93,8 +95,8 @@ class _DiagonalLinesPainter extends CustomPainter {
     }
     // 右边垂直线
     for (var i = 0; i < 3; i++) {
-      canvas.drawLine(Offset(size.width - (4 * (i + 1)).sp, 0),
-          Offset(size.width - (4 * (i + 1)), size.height), paintRight);
+      canvas.drawLine(Offset(size.width - (6 * (i + 1)).sp, 0.sp),
+          Offset(size.width - (6 * (i + 1)).sp, size.height), paintRight);
     }
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/models/index.dart';
 import 'package:flutter_application_arknights/routes/home/setting.dart';
-import 'package:flutter_application_arknights/widgets/userCard.dart';
+import 'package:flutter_application_arknights/widgets/common/userCard.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_skeleton/loader_skeleton.dart';
 import '../../net/httpServe.dart';

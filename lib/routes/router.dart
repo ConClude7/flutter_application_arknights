@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_arknights/routes/loginPages/login.dart';
+import 'package:flutter_application_arknights/routes/login.dart';
 import 'package:flutter_application_arknights/routes/pages/article.dart';
-import 'index.dart';
+import 'home/index.dart';
 
 //配置路由
 

@@ -5,8 +5,8 @@ import 'package:motion_toast/resources/arrays.dart';
 
 // ignore: camel_case_types
 class myToast {
-  static double width = 250.sp;
-  static double height = 40.sp;
+  static double width = 500.sp;
+  static double height = 80.sp;
   static TextStyle textStyle = const TextStyle(
       color: Color.fromARGB(255, 255, 255, 255), fontWeight: FontWeight.bold);
   static Color primaryColor = const Color.fromARGB(255, 80, 81, 79);

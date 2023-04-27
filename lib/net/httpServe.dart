@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/common/global.dart';
-import 'package:flutter_application_arknights/routes/loginPages/login.dart';
+import 'package:flutter_application_arknights/routes/login.dart';
 import '../common/shared.dart';
 
 class DartHttpUtils {
