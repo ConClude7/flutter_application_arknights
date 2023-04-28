@@ -8,28 +8,32 @@ part of 'article.dart';
 
 Article _$ArticleFromJson(Map<String, dynamic> json) => Article()
   ..author = json['author'] as String
+  ..authorName = json['authorName'] as String
   ..title = json['title'] as String
   ..content = json['content'] as String
   ..images = json['images'] as List<dynamic>
-  ..keyWord = json['keyWord'] as List<dynamic>
+  ..keyWords = json['keyWords'] as List<dynamic>
   ..clicks = json['clicks'] as num
+  ..likes = json['likes'] as num
   ..talks = json['talks'] as num
   ..deleted = json['deleted'] as bool
-  ..createTIme = json['createTIme'] as String
+  ..createTime = json['createTime'] as String
   ..updateTime = json['updateTime'] as String
   ..lastTalkTime = json['lastTalkTime'] as String
   ..articleState = json['articleState'] as String;
 
 Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
       'author': instance.author,
+      'authorName': instance.authorName,
       'title': instance.title,
       'content': instance.content,
       'images': instance.images,
-      'keyWord': instance.keyWord,
+      'keyWords': instance.keyWords,
       'clicks': instance.clicks,
+      'likes': instance.likes,
       'talks': instance.talks,
       'deleted': instance.deleted,
-      'createTIme': instance.createTIme,
+      'createTime': instance.createTime,
       'updateTime': instance.updateTime,
       'lastTalkTime': instance.lastTalkTime,
       'articleState': instance.articleState,

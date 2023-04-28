@@ -116,7 +116,7 @@ class _articlePageState extends State<articlePage> {
                                   ),
                                   SizedBox(
                                     width: double.infinity,
-                                    height: 900.sp,
+                                    height: 800.sp,
                                     child: TextFormField(
                                       maxLines: null,
                                       maxLength: 800,
@@ -305,7 +305,7 @@ Future<void> upLoadArticle(
       {
         "title": title,
         "content": content,
-        "keyWord": tags,
+        "keyWords": tags,
         "images": getImageNames
       },
       context);

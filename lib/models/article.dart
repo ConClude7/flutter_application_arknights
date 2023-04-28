@@ -7,14 +7,16 @@ class Article {
   Article();
 
   late String author;
+  late String authorName;
   late String title;
   late String content;
   late List images;
-  late List keyWord;
+  late List keyWords;
   late num clicks;
+  late num likes;
   late num talks;
   late bool deleted;
-  late String createTIme;
+  late String createTime;
   late String updateTime;
   late String lastTalkTime;
   late String articleState;

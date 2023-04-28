@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/models/index.dart';
 import 'package:flutter_application_arknights/routes/home/setting.dart';
 import 'package:flutter_application_arknights/widgets/common/userCard.dart';
@@ -21,6 +22,7 @@ class _myPageState extends State<myPage> {
   @override
   void initState() {
     super.initState();
+    /* PersistentStorage().removeStorage("token"); */
     _futureUser = getUser();
   }
 
@@ -28,6 +30,7 @@ class _myPageState extends State<myPage> {
     // 查询用户
     var res = await DartHttpUtils().getDio('/api/users', context)
         as Map<String, dynamic>;
+    print(res);
     return User.fromJson(res);
   }
 

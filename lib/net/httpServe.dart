@@ -13,7 +13,7 @@ class DartHttpUtils {
   createDioInstance(BuildContext context) async {
     final token = await PersistentStorage().getStorage("token");
     // ignore: avoid_print
-    print("DioGetToken:$token");
+    /* print("DioGetToken:$token"); */
     _dio = Dio(BaseOptions(
       baseUrl: "http://192.168.0.28:210",
       headers: {
@@ -54,7 +54,7 @@ class DartHttpUtils {
 
     if (response.statusCode == 200) {
       // ignore: avoid_print
-      print(response.data.toString());
+      /* print(response.data.toString()); */
       return response.data;
     }
   }
@@ -85,7 +85,7 @@ class DartHttpUtils {
     }
   }
 
-  //发送POST请求，application/json
+  //发送POST请求，上传类型为图片文件
   postFileDio(url, FormData data, BuildContext context) async {
     await createDioInstance(context);
     try {

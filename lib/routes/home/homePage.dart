@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_arknights/models/index.dart';
-import 'package:flutter_application_arknights/net/httpServe.dart';
 import 'package:flutter_application_arknights/widgets/common/articleCard.dart';
 import 'package:flutter_application_arknights/widgets/indexPages/homeSwiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +73,8 @@ class _homePageState extends State<homePage> {
                     ),
                     SliverList(
                       delegate: SliverChildListDelegate(
-                        List.generate(10, (index) => articleCard(index: index)),
+                        List.generate(10,
+                            (index) => /* articleCard(index: index) */ Container()),
                       ),
                     ),
                   ],

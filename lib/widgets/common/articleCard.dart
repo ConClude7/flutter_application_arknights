@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/models/article.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GradientLine extends StatelessWidget {
@@ -45,9 +46,9 @@ class GradientLine extends StatelessWidget {
 }
 
 class articleCard extends StatelessWidget {
-  final int index;
+  final Article article;
 
-  const articleCard({super.key, required this.index});
+  const articleCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,7 @@ class articleCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Dr.RaBBit@$index",
+                  "Dr.${article.authorName}",
                   style: const TextStyle(
                       fontFamily: "PlayfairDisplay",
                       color: Color.fromARGB(255, 229, 229, 229)),

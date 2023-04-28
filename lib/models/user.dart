@@ -6,7 +6,6 @@ part 'user.g.dart';
 class User {
   User();
 
-  late String userId;
   late String username;
   late String type;
   String? email;
