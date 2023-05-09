@@ -6,6 +6,7 @@ part 'article.g.dart';
 class Article {
   Article();
 
+  late String id;
   late String author;
   late String authorName;
   late String title;
@@ -20,7 +21,8 @@ class Article {
   late String updateTime;
   late String lastTalkTime;
   late String articleState;
-  
-  factory Article.fromJson(Map<String,dynamic> json) => _$ArticleFromJson(json);
+
+  factory Article.fromJson(Map<String, dynamic> json) =>
+      _$ArticleFromJson(json);
   Map<String, dynamic> toJson() => _$ArticleToJson(this);
 }

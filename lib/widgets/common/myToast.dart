@@ -4,7 +4,7 @@ import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 
 // ignore: camel_case_types
-class myToast {
+class MyToast {
   static double width = 500.sp;
   static double height = 80.sp;
   static TextStyle textStyle = const TextStyle(

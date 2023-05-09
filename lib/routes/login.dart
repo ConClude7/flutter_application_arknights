@@ -4,14 +4,14 @@ import 'package:flutter_login/flutter_login.dart';
 
 import '../common/shared.dart';
 
-class loginPage extends StatefulWidget {
-  const loginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<loginPage> createState() => _loginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _LoginPageState extends State<LoginPage> {
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   @override

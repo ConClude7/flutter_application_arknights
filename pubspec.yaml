@@ -34,25 +34,44 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  # 官方Icon
   cupertino_icons: ^1.0.5
+  # 屏幕自适应
   flutter_screenutil: ^5.7.0
+  # Json实例化
   json_model: ^1.0.0
   json_serializable: ^6.6.1
-  shared_preferences: ^2.1.0
+  # 全局变量
+  shared_preferences: ^2.1.1
+  # 底部导航栏
   bubble_bottom_bar: ^2.0.0
-  dio: ^5.1.1
+  # 网络请求
+  dio: ^5.1.2
+  # 注册登录框架
   flutter_login: ^4.1.1
+  # 粒子特效(自定义强)
+  particles_fly: ^0.0.8
+  # 轮播图(用于二次封装结合Yhh_Swiper)
+  flutter_swiper_null_safety: ^1.0.2
+  # 粒子特效(自定义低用于AppBar)
   particles_flutter: ^0.1.4
-  flutter_swiper: ^1.1.6
-  carousel_slider: ^4.2.1
-  flutter_particles: ^1.0.0+7
+  # Ui框架
   getwidget: ^2.0.4
+  # 页面视图加载动画
   loader_skeleton: ^0.0.4
+  # 高级下拉刷新
   pull_to_refresh: ^2.0.0
+  # 多选照片
   multi_image_picker_view: ^0.0.15
+  # 状态浮窗
   motion_toast: ^2.6.6
+  # Tag生成
   material_tag_editor: ^0.1.2
+  # 页面视图生成丝滑动画
   flutter_staggered_animations: ^1.1.1
+  # 图片查看以及页面动画
+  dismissible_page: ^1.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

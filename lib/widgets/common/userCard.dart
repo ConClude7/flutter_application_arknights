@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget userCard(pagePadding, user) {
+Widget UserCard(pagePadding, user) {
   return Container(
     width: double.infinity,
     padding: pagePadding,
@@ -16,7 +16,7 @@ Widget userCard(pagePadding, user) {
               color: const Color.fromARGB(255, 255, 255, 255),
               width: 1.sp,
               style: BorderStyle.solid,
-              strokeAlign: StrokeAlign.inside)),
+              strokeAlign: BorderSide.strokeAlignInside)),
       child: CustomPaint(
           painter: _DiagonalLinesPainter(),
           child: Stack(

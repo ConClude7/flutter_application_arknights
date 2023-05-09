@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/models/index.dart';
 import 'package:flutter_application_arknights/routes/home/setting.dart';
 import 'package:flutter_application_arknights/widgets/common/userCard.dart';
@@ -7,14 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_skeleton/loader_skeleton.dart';
 import '../../net/httpServe.dart';
 
-class myPage extends StatefulWidget {
-  const myPage({super.key});
+class MyPage extends StatefulWidget {
+  const MyPage({super.key});
 
   @override
-  State<myPage> createState() => _myPageState();
+  State<MyPage> createState() => _MyPageState();
 }
 
-class _myPageState extends State<myPage> {
+class _MyPageState extends State<MyPage> {
   late Future<User> _futureUser;
 
   final EdgeInsets pagePadding = EdgeInsets.symmetric(horizontal: 25.sp);
@@ -46,12 +45,12 @@ class _myPageState extends State<myPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                userCard(pagePadding, user),
+                UserCard(pagePadding, user),
                 Container(
                   width: double.infinity,
                   padding: pagePadding,
                   margin: EdgeInsets.only(top: 20.sp),
-                  child: const settingCards(),
+                  child: const SettingCards(),
                 )
               ],
             );

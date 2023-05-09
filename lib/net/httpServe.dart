@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_arknights/common/global.dart';
-import 'package:flutter_application_arknights/routes/login.dart';
+import 'package:flutter_application_arknights/routes/Login.dart';
 import '../common/shared.dart';
 
 class DartHttpUtils {
@@ -29,7 +27,7 @@ class DartHttpUtils {
           PersistentStorage().removeStorage("token");
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const loginPage()),
+            MaterialPageRoute(builder: (context) => const LoginPage()),
             (route) => false,
           );
         } else if (e.response?.statusCode == 200) {}

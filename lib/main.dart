@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+        // Size(720, 1280) (375,812)
         designSize: const Size(720, 1280),
         builder: (((context, child) => MaterialApp(
               title: 'Flutter Demo',
@@ -32,9 +33,11 @@ class MyApp extends StatelessWidget {
                       const Color.fromARGB(255, 20, 33, 61)),
                   fontFamily: "PlayfairDisplay",
                   textTheme: const TextTheme(
+                      // ignore: deprecated_member_use
                       headline3: TextStyle(
                         fontFamily: "PlayfairDisplay",
                       ),
+                      // ignore: deprecated_member_use
                       button:
                           TextStyle(color: Color.fromARGB(255, 255, 0, 0)))),
               initialRoute: "/",

@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/widgets/common/lineBackground.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:particles_fly/particles_fly.dart';
 import '../../widgets/indexPages/bubbleBottomItem.dart';
-import 'favoritePage.dart';
-import 'homePage.dart';
+import 'FavoritePage.dart';
+import 'HomePage.dart';
 import 'myPage.dart';
 import 'simPage.dart';
 
-class index extends StatefulWidget {
+class Index extends StatefulWidget {
   final bool? settingPage;
 
-  const index({super.key, this.settingPage = false});
+  const Index({super.key, this.settingPage = false});
 
   @override
-  State<index> createState() => _indexState();
+  State<Index> createState() => _IndexState();
 }
 
-class _indexState extends State<index> {
+class _IndexState extends State<Index> {
   late Widget whatPage;
   late int currentIndex;
   @override
@@ -28,11 +30,11 @@ class _indexState extends State<index> {
   void loading() async {
     if (widget.settingPage!) {
       currentIndex = 3;
-      whatPage = const myPage();
+      whatPage = const MyPage();
       changePage(currentIndex);
     } else {
       currentIndex = 0;
-      whatPage = const homePage();
+      whatPage = const HomePage();
     }
   }
 
@@ -41,16 +43,16 @@ class _indexState extends State<index> {
       currentIndex = index!;
       switch (currentIndex) {
         case 0:
-          whatPage = const homePage();
+          whatPage = const HomePage();
           break;
         case 1:
-          whatPage = simPage();
+          whatPage = SimPage();
           break;
         case 2:
-          whatPage = favoritePage();
+          whatPage = FavoritePage();
           break;
         case 3:
-          whatPage = const myPage();
+          whatPage = const MyPage();
           break;
         default:
       }
@@ -74,7 +76,7 @@ class _indexState extends State<index> {
                     color: Color.fromARGB(255, 229, 229, 229)),
                 child: Stack(
                   children: [
-                    Positioned(child: lineBackground),
+                    Positioned(child: LineBackground(context)),
                     Positioned(child: whatPage)
                   ],
                 )),

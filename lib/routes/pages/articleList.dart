@@ -7,14 +7,14 @@ import 'package:flutter_application_arknights/widgets/common/lineBackground.dart
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:loader_skeleton/loader_skeleton.dart';
 
-class articleListPage extends StatefulWidget {
-  const articleListPage({super.key});
+class ArticleListPage extends StatefulWidget {
+  const ArticleListPage({super.key});
 
   @override
-  State<articleListPage> createState() => _articleListPageState();
+  State<ArticleListPage> createState() => _ArticleListPageState();
 }
 
-class _articleListPageState extends State<articleListPage> {
+class _ArticleListPageState extends State<ArticleListPage> {
   late Future<List<Article>> _futureArticle;
 
   @override
@@ -30,6 +30,7 @@ class _articleListPageState extends State<articleListPage> {
     for (Map<String, dynamic> data in res) {
       resList.add(Article.fromJson(data));
     }
+    print(res);
 
     return resList;
   }
@@ -57,12 +58,11 @@ class _articleListPageState extends State<articleListPage> {
                                 return AnimationConfiguration.staggeredList(
                                     position: index,
                                     duration: const Duration(milliseconds: 375),
-                                    child: SlideAnimation(
-                                        verticalOffset: 50.0,
-                                        child: FadeInAnimation(
-                                            child: articleCard(
-                                          article: articles[index],
-                                        ))));
+                                    child: FadeInAnimation(
+                                        child: ArticleCard(
+                                      article: articles[index],
+                                      firstIndex: index,
+                                    )));
                               }));
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");

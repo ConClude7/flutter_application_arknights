@@ -7,6 +7,7 @@ part of 'article.dart';
 // **************************************************************************
 
 Article _$ArticleFromJson(Map<String, dynamic> json) => Article()
+  ..id = json['_id'] as String
   ..author = json['author'] as String
   ..authorName = json['authorName'] as String
   ..title = json['title'] as String
@@ -23,6 +24,7 @@ Article _$ArticleFromJson(Map<String, dynamic> json) => Article()
   ..articleState = json['articleState'] as String;
 
 Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
+      '_id': instance.id,
       'author': instance.author,
       'authorName': instance.authorName,
       'title': instance.title,

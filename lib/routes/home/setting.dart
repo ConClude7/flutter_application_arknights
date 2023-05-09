@@ -9,14 +9,14 @@ import '../../widgets/function/pageAnimation.dart';
 
 import '../../widgets/common/3dCard.dart';
 
-class settingCards extends StatefulWidget {
-  const settingCards({super.key});
+class SettingCards extends StatefulWidget {
+  const SettingCards({super.key});
 
   @override
-  State<settingCards> createState() => _settingCardsState();
+  State<SettingCards> createState() => _SettingCardsState();
 }
 
-class _settingCardsState extends State<settingCards> {
+class _SettingCardsState extends State<SettingCards> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -26,7 +26,7 @@ class _settingCardsState extends State<settingCards> {
       spacing: 20.sp,
       runSpacing: 10.sp,
       children: [
-        settingCardBuild(
+        SettingCardBuild(
           width: 300.sp,
           height: 120.sp,
           icon: Icons.document_scanner,
@@ -35,13 +35,13 @@ class _settingCardsState extends State<settingCards> {
             Navigator.push(
                 context,
                 EnterExitRoute(
-                    exitPage: const index(
+                    exitPage: const Index(
                       settingPage: true,
                     ),
-                    enterPage: const articlePage()));
+                    enterPage: const ArticlePage()));
           },
         ),
-        settingCardBuild(
+        SettingCardBuild(
           width: 300.sp,
           height: 120.sp,
           rotateY: 15.sp,
@@ -51,20 +51,20 @@ class _settingCardsState extends State<settingCards> {
             Navigator.push(
                 context,
                 EnterExitRoute(
-                    exitPage: const index(
+                    exitPage: const Index(
                       settingPage: true,
                     ),
-                    enterPage: const articleListPage()));
+                    enterPage: const ArticleListPage()));
           },
         ),
-        settingCardBuild(
+        SettingCardBuild(
           width: 250.sp,
           height: 120.sp,
           icon: Icons.bug_report,
           title: "上报Bug",
           onTap: () {},
         ),
-        settingCardBuild(
+        SettingCardBuild(
           rotateY: 15,
           width: 350.sp,
           height: 120.sp,
@@ -80,7 +80,7 @@ class _settingCardsState extends State<settingCards> {
               '/login',
               (route) => false,
             );
-            myToast.success(context, "退出登录", null);
+            MyToast.success(context, "退出登录", null);
           },
         )
 
@@ -98,7 +98,7 @@ class _settingCardsState extends State<settingCards> {
   }
 }
 
-class settingCardBuild extends StatelessWidget {
+class SettingCardBuild extends StatelessWidget {
   final double width;
   final double height;
   final double rotateY;
@@ -106,7 +106,7 @@ class settingCardBuild extends StatelessWidget {
   final String title;
   final void Function() onTap;
 
-  const settingCardBuild(
+  const SettingCardBuild(
       {super.key,
       required this.width,
       required this.height,

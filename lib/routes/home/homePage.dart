@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_arknights/widgets/common/articleCard.dart';
 import 'package:flutter_application_arknights/widgets/indexPages/homeSwiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_skeleton/loader_skeleton.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class homePage extends StatefulWidget {
-  const homePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<homePage> createState() => _homePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _homePageState extends State<homePage> {
+class _HomePageState extends State<HomePage> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -66,7 +65,7 @@ class _homePageState extends State<homePage> {
                     SliverAppBar(
                       expandedHeight: 250.sp,
                       flexibleSpace:
-                          const FlexibleSpaceBar(background: homeSwiper()),
+                          const FlexibleSpaceBar(background: HomeSwiper()),
                       floating: false,
                       pinned: false,
                       snap: false,

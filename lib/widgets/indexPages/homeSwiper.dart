@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
-class homeSwiper extends StatefulWidget {
-  const homeSwiper({super.key});
+class HomeSwiper extends StatefulWidget {
+  const HomeSwiper({super.key});
 
   @override
-  State<homeSwiper> createState() => _homeSwiperState();
+  State<HomeSwiper> createState() => _HomeSwiperState();
 }
 
-class _homeSwiperState extends State<homeSwiper> {
+class _HomeSwiperState extends State<HomeSwiper> {
   int pageIndex = 0;
   List images = const [
     "http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1208/19/c10/13040411_13040411_1345389063185.jpg",

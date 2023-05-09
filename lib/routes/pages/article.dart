@@ -12,21 +12,21 @@ import 'package:material_tag_editor/tag_editor.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import '../../widgets/common/lineBackground.dart';
 
-class articlePage extends StatefulWidget {
-  const articlePage({super.key});
+class ArticlePage extends StatefulWidget {
+  const ArticlePage({super.key});
 
   @override
-  State<articlePage> createState() => _articlePageState();
+  State<ArticlePage> createState() => _ArticlePageState();
 }
 
-class _articlePageState extends State<articlePage> {
+class _ArticlePageState extends State<ArticlePage> {
   Color fontColor = const Color.fromARGB(255, 229, 229, 229);
   Color errorColor = const Color.fromARGB(200, 252, 163, 17);
   Color iconColor = const Color.fromARGB(150, 229, 229, 229);
   final formKey = GlobalKey<FormState>();
   final tags = [];
-  String title = "111";
-  String content = "111";
+  late String title;
+  late String content;
   final imageController = MultiImagePickerController(
       maxImages: 9,
       withData: true,
@@ -38,10 +38,10 @@ class _articlePageState extends State<articlePage> {
         appBar: appBar(context, "编辑文章", [
           GFButton(
             onPressed: () async {
-              await upLoadImage(
-                  context, imageController, formKey, title, content, tags);
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                await upLoadImage(
+                    context, imageController, formKey, title, content, tags);
                 // ignore: use_build_context_synchronously
 
               }
@@ -288,13 +288,14 @@ Future<void> upLoadImage(
         print(e.toString());
       }
     } else {
-      myToast.warning(context, "请勿上传重复的图片", null);
+      MyToast.warning(context, "请勿上传重复的图片", null);
     }
   } else {
     getImageNames = [];
   }
-  print("getImageNames:$getImageNames");
 
+  /* print("title:$title");
+  print("content:$content"); */
   await upLoadArticle(context, formKey, title, content, tags, getImageNames);
 }
 

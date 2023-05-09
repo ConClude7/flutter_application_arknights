@@ -1,31 +1,24 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_particles/particles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:particles_flutter/particles_flutter.dart';
+import 'package:particles_fly/particles_fly.dart';
 
-/* Widget lineBackground = CircularParticle(
-  key: UniqueKey(),
-  awayRadius: 100,
-  numberOfParticles: 100,
-  speedOfParticles: 0.8,
-  height: 892.sp,
-  width: 412.sp,
-  onTapAnimation: false,
-  particleColor: const Color.fromARGB(20, 255, 255, 255),
-  maxParticleSize: 2,
-  isRandSize: true,
-  isRandomColor: false,
-  awayAnimationCurve: Curves.fastOutSlowIn,
-  awayAnimationDuration: const Duration(milliseconds: 300),
-  enableHover: false,
-  hoverColor: Colors.white,
-  hoverRadius: 90,
-  connectDots: true, //not recommended
-); */
-
-Widget lineBackground = Particles(20, const Color.fromARGB(20, 255, 255, 255));
+// ignore: non_constant_identifier_names
+LineBackground(context) {
+  return ParticlesFly(
+    width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size.height,
+    numberOfParticles: 12,
+    connectDots: true,
+    onTapAnimation: false,
+    speedOfParticles: 1,
+    particleColor: const Color.fromARGB(30, 255, 255, 255),
+    lineColor: const Color.fromARGB(20, 255, 255, 255),
+    isRandSize: true,
+    maxParticleSize: 3,
+  );
+}
 
 class BackgroundPainter extends CustomPainter {
   @override
