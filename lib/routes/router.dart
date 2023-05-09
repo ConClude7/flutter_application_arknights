@@ -8,7 +8,7 @@ import 'home/index.dart';
 //配置路由
 
 final Map<String, Widget Function(BuildContext)> routes = {
-  '/': (context) => const Index(),
+  '/': (context) => const PayPage(),
   '/login': (context) => const LoginPage(),
   '/article': (context) => const ArticlePage(),
   // ignore: prefer_const_constructors

@@ -48,7 +48,6 @@ class _ArticleListPageState extends State<ArticleListPage> {
                 child: FutureBuilder<List<Article>>(
                   future: _futureArticle,
                   builder: (context, snapshot) {
-                    /* print("snapshot:$snapshot"); */
                     if (snapshot.hasData) {
                       List<Article> articles = snapshot.data!;
                       return AnimationLimiter(
@@ -57,7 +56,8 @@ class _ArticleListPageState extends State<ArticleListPage> {
                               itemBuilder: (context, int index) {
                                 return AnimationConfiguration.staggeredList(
                                     position: index,
-                                    duration: const Duration(milliseconds: 375),
+                                    duration:
+                                        const Duration(milliseconds: 1000),
                                     child: FadeInAnimation(
                                         child: ArticleCard(
                                       article: articles[index],
@@ -67,7 +67,9 @@ class _ArticleListPageState extends State<ArticleListPage> {
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     } else {
-                      return DarkCardListSkeleton();
+                      return DarkCardListSkeleton(
+                        length: 1,
+                      );
                     }
                   },
                 ))));

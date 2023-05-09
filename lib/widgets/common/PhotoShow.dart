@@ -13,11 +13,9 @@ class PhotoShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Get:$tagName");
     return DismissiblePage(
       backgroundColor: const Color.fromARGB(255, 52, 52, 52),
       onDismissed: () {
-        print("Leave:$tagName");
         Navigator.of(context).pop();
       },
       /* direction: DismissiblePageDismissDirection.multi, */

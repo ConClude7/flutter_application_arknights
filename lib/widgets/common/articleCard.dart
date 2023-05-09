@@ -133,6 +133,9 @@ class _ArticleCardState extends State<ArticleCard> {
               },
             ),
             SizedBox(
+              height: 30.sp,
+            ),
+            SizedBox(
               child: widget.article.images.isEmpty
                   ? const SizedBox.shrink()
                   : FutureBuilder(
