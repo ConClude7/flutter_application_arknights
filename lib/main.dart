@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         // Size(720, 1280) (375,812)
-        designSize: const Size(375, 812),
+        designSize: const Size(720, 1280),
         builder: (((context, child) => MaterialApp(
               title: 'Flutter Demo',
               debugShowCheckedModeBanner: false,
