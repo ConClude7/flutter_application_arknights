@@ -128,8 +128,11 @@ class _ArticleCardState extends State<ArticleCard> {
                   ),
                 ],
               ),
-              onTap: () {
+              onTap: () async {
                 print("article.id: ${widget.article.id}");
+                var res = await DartHttpUtils()
+                    .deleteDio("/api/articles/${widget.article.id}", context);
+                if (res['status']) {}
               },
             ),
             SizedBox(

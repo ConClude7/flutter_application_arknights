@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/routes/Login.dart';
+import 'package:flutter_application_arknights/routes/pages/ArticleList.dart';
 import 'package:flutter_application_arknights/routes/pages/article.dart';
-import 'package:flutter_application_arknights/routes/yy/PayPage.dart';
-import 'package:flutter_application_arknights/widgets/common/PhotoShow.dart';
-import 'home/index.dart';
+import 'package:flutter_application_arknights/routes/home/index.dart';
 
 //配置路由
 
 final Map<String, Widget Function(BuildContext)> routes = {
-  '/': (context) => const PayPage(),
+  '/': (context) => const Index(),
   '/login': (context) => const LoginPage(),
   '/article': (context) => const ArticlePage(),
-  // ignore: prefer_const_constructors
+  '/myArticles': (context) => const ArticleListPage(),
 };
 
 //固定写法
