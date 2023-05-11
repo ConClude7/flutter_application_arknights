@@ -48,13 +48,7 @@ class _SettingCardsState extends State<SettingCards> {
           icon: Icons.edit,
           title: "文章管理",
           onTap: () {
-            Navigator.push(
-                context,
-                EnterExitRoute(
-                    exitPage: const Index(
-                      settingPage: true,
-                    ),
-                    enterPage: const ArticleListPage()));
+            Navigator.pushNamed(context, "/myArticles");
           },
         ),
         SettingCardBuild(

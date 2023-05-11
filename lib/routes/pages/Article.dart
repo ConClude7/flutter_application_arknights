@@ -328,6 +328,11 @@ Future<void> upLoadImage(
         Map res = await DartHttpUtils().postFileDio("/api/articles/images",
             formData, context, (progress) => progressCallback(progress));
         getImageNames = await res['imageNames'];
+        if (getImageNames.length == imagesFiles.length) {
+          // ignore: use_build_context_synchronously
+          await upLoadArticle(
+              context, formKey, title, content, tags, getImageNames);
+        }
       } catch (e) {
         // ignore: avoid_print
         print(e.toString());
@@ -342,7 +347,10 @@ Future<void> upLoadImage(
   /* print("title:$title");
   print("content:$content"); */
   // ignore: use_build_context_synchronously
-  await upLoadArticle(context, formKey, title, content, tags, getImageNames);
+  if (imagesFiles.isEmpty) {
+    // ignore: use_build_context_synchronously
+    upLoadArticle(context, formKey, title, content, tags, getImageNames);
+  }
 }
 
 Future<void> upLoadArticle(
@@ -359,7 +367,7 @@ Future<void> upLoadArticle(
 
   if (res['status'] == true) {
     // ignore: use_build_context_synchronously
-    Navigator.pushNamed(context, "/myArticles");
+    Navigator.pushReplacementNamed(context, "/myArticles");
     // ignore: use_build_context_synchronously
     MyToast.success(context, "上传成功", null);
   }
