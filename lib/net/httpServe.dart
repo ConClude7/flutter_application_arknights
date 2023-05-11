@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/net/httpError.dart';
 import 'package:flutter_application_arknights/routes/Login.dart';
-import 'package:flutter_application_arknights/widgets/common/MyToast.dart';
 import '../common/shared.dart';
 
 class DartHttpUtils {
