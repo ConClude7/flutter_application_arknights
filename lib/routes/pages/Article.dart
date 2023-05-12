@@ -31,6 +31,7 @@ class _ArticlePageState extends State<ArticlePage> {
   final imageController = MultiImagePickerController(
       maxImages: 9,
       withData: true,
+      withReadStream: true,
       allowedImageTypes: ['png', 'jpg', 'jpeg', 'gif'],
       images: <ImageFile>[]);
   @override
@@ -327,6 +328,7 @@ Future<void> upLoadImage(
       try {
         Map res = await DartHttpUtils().postFileDio("/api/articles/images",
             formData, context, (progress) => progressCallback(progress));
+        print(res);
         getImageNames = await res['imageNames'];
         if (getImageNames.length == imagesFiles.length) {
           // ignore: use_build_context_synchronously

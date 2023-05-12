@@ -11,8 +11,9 @@ class DartHttpUtils {
 
   createDioInstance(BuildContext context) async {
     final token = await PersistentStorage().getStorage("token");
+    final baseUrl = await PersistentStorage().getStorage("url");
     _dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.0.100:210", // 100 Or 28
+      baseUrl: baseUrl, // 100 Or 28
       connectTimeout: const Duration(seconds: 2),
       headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",

@@ -4,6 +4,7 @@ import 'package:flutter_application_arknights/net/httpServe.dart';
 import 'package:flutter_application_arknights/widgets/common/appBar.dart';
 import 'package:flutter_application_arknights/widgets/common/articleCard.dart';
 import 'package:flutter_application_arknights/widgets/common/lineBackground.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:loader_skeleton/loader_skeleton.dart';
 
@@ -52,6 +53,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       List<Article> articles = snapshot.data!;
                       return AnimationLimiter(
                           child: ListView.builder(
+                              scrollDirection: Axis.vertical,
                               itemCount: articles.length,
                               itemBuilder: (context, int index) {
                                 return AnimationConfiguration.staggeredList(
@@ -60,9 +62,9 @@ class _ArticleListPageState extends State<ArticleListPage> {
                                         const Duration(milliseconds: 1000),
                                     child: FadeInAnimation(
                                         child: ArticleCard(
-                                      article: articles[index],
-                                      firstIndex: index,
-                                    )));
+                                            article: articles[index],
+                                            firstIndex: index,
+                                            author: true)));
                               }));
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");

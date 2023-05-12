@@ -1,9 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/models/article.dart';
 import 'package:flutter_application_arknights/net/httpServe.dart';
+import 'package:flutter_application_arknights/widgets/common/MyToast.dart';
+import 'package:flutter_application_arknights/widgets/function/imageUrl.dart';
 import 'package:flutter_application_arknights/widgets/yhhElement.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:pull_down_button/pull_down_button.dart';
 
 class GradientLine extends StatelessWidget {
   final double height;
@@ -51,8 +56,13 @@ class GradientLine extends StatelessWidget {
 class ArticleCard extends StatefulWidget {
   final Article article;
   final int firstIndex;
+  final bool author;
 
-  const ArticleCard({Key? key, required this.article, required this.firstIndex})
+  const ArticleCard(
+      {Key? key,
+      required this.article,
+      required this.firstIndex,
+      this.author = false})
       : super(key: key);
 
   @override
@@ -66,14 +76,14 @@ class _ArticleCardState extends State<ArticleCard> {
   @override
   void initState() {
     super.initState();
-    _futureImages = getImagesBase64();
+    _futureImages = getImagesUrl();
   }
 
-  Future<List<dynamic>> getImagesBase64() async {
-    final res = await DartHttpUtils().postJsonDio(
-        "/api/articles/getImages", {"images": widget.article.images}, context);
+  Future<List<dynamic>> getImagesUrl() async {
+    final res = await DartHttpUtils().postJsonDio("/api/articles/getImages",
+        {"images": widget.article.images, "compress": true}, context);
     if (res != null) {
-      return res;
+      return imagesUrl(res);
     } else {
       throw Exception('Failed to load images');
     }
@@ -132,7 +142,9 @@ class _ArticleCardState extends State<ArticleCard> {
                 print("article.id: ${widget.article.id}");
                 var res = await DartHttpUtils()
                     .deleteDio("/api/articles/${widget.article.id}", context);
-                if (res['status']) {}
+                if (res['status']) {
+                  MyToast.success(context, "删除成功", null);
+                }
               },
             ),
             SizedBox(
@@ -145,9 +157,11 @@ class _ArticleCardState extends State<ArticleCard> {
                       future: _futureImages,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          final List<dynamic> imagesBase64 = snapshot.data!;
+                          final List<dynamic> imagesUrl = snapshot.data!;
+
                           return Yhh_ImageShow(
-                              base64: imagesBase64,
+                              imagesUrl: imagesUrl,
+                              imageNames: widget.article.images,
                               firstIndex: widget.firstIndex);
                         } else if (snapshot.hasError) {
                           return Text("${snapshot.error}");
@@ -156,10 +170,138 @@ class _ArticleCardState extends State<ArticleCard> {
                         }
                       },
                     ),
-            )
+            ),
+            widget.author
+                ? Container(
+                    width: double.infinity,
+                    alignment: Alignment.centerRight,
+                    child: Theme(
+                        data: ThemeData.dark(),
+                        child: PullDownButton(
+                          itemBuilder: (context) => [
+                            PullDownMenuActionsRow.medium(
+                                items: [
+                              [
+                                "修改",
+                                () {
+                                  print("修改");
+                                },
+                                Icons.tab
+                              ],
+                              [
+                                "删除",
+                                () {
+                                  print("删除");
+                                },
+                                Icons.tab
+                              ]
+                            ]
+                                    .map((List<dynamic> value) =>
+                                        PullDownMenuItem(
+                                          onTap: value[1],
+                                          title: value[0],
+                                          icon: value[2],
+                                        ))
+                                    .toList())
+                          ],
+                          buttonBuilder: (BuildContext context,
+                              Future<void> Function() showMenu) {
+                            return HappyIcon();
+                          },
+                        )))
+                : const SizedBox.shrink(),
           ],
         ),
       ),
+    );
+  }
+}
+
+/* Widget DropDowmButton = PullDownButton(
+  itemBuilder: (context) => [
+    PullDownMenuActionsRow.medium(
+        items: [
+      [
+        "修改",
+        () {
+          print("修改");
+        },
+        Icons.tab
+      ],
+      [
+        "删除",
+        () {
+          print("删除");
+        },
+        Icons.tab
+      ]
+    ]
+            .map((List<dynamic> value) => PullDownMenuItem(
+                  onTap: value[1],
+                  title: value[0],
+                  icon: value[2],
+                ))
+            .toList())
+  ],
+  buttonBuilder: (BuildContext context, Future<void> Function() showMenu) {
+    return IconButton(
+        onPressed: showMenu,
+        icon: const Icon(
+          Icons.keyboard_command_key,
+          size: 10,
+        ));
+  },
+); */
+
+class HappyIcon extends StatefulWidget {
+  @override
+  _HappyIconState createState() => _HappyIconState();
+}
+
+class _HappyIconState extends State<HappyIcon>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void startRotationAnimation() {
+    _animationController.reset();
+    _animationController.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle:
+              _animationController.value * 2.0 * 3.141592653589793, // 旋转角度为0到2π
+          child: IconButton(
+            onPressed: () {
+              startRotationAnimation();
+            },
+            icon: const Icon(
+              Icons.keyboard_command_key,
+              size: 35.0,
+              color: Colors.orange,
+            ),
+          ),
+        );
+      },
     );
   }
 }

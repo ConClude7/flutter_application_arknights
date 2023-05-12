@@ -71,6 +71,10 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   # 图片查看以及页面动画
   dismissible_page: ^1.0.2
+  # 图片缓存
+  cached_network_image: ^3.2.3
+  # 按钮菜单
+  pull_down_button: ^0.9.1
 
 dev_dependencies:
   flutter_test:

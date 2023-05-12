@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/widgets/function/createColor.dart';
 
 import './routes/router.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PersistentStorage().setStorage("url", "http://192.168.0.100:210");
     return ScreenUtilInit(
         // Size(720, 1280) (375,812)
         designSize: const Size(720, 1280),
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget {
                       button:
                           TextStyle(color: Color.fromARGB(255, 255, 0, 0)))),
               initialRoute: "/",
+              onGenerateRoute: onGenerateRoute,
               routes: routes,
             ))));
   }

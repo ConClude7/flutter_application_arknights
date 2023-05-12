@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/net/httpServe.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'common/PhotoShow.dart';
@@ -134,11 +135,16 @@ class _Yhh_SwiperState extends State<Yhh_Swiper> {
 }
 
 class Yhh_ImageShow extends StatefulWidget {
-  final List<dynamic> base64;
+  final List<dynamic> imagesUrl;
+  final List<dynamic> imageNames;
   final int firstIndex;
 
-  const Yhh_ImageShow(
-      {super.key, required this.base64, required this.firstIndex});
+  const Yhh_ImageShow({
+    super.key,
+    required this.imagesUrl,
+    required this.imageNames,
+    required this.firstIndex,
+  });
 
   @override
   State<Yhh_ImageShow> createState() => _Yhh_ImageShowState();
@@ -147,12 +153,9 @@ class Yhh_ImageShow extends StatefulWidget {
 class _Yhh_ImageShowState extends State<Yhh_ImageShow> {
   @override
   Widget build(BuildContext context) {
-    final List imageTurn = [];
-    for (dynamic base in widget.base64) {
-      imageTurn.add(base64Decode(base));
-    }
-    final showIndex = widget.base64.length <= 3 ? widget.base64.length : 3;
-    final moreIndex = widget.base64.length - 3;
+    final showIndex =
+        widget.imagesUrl.length <= 3 ? widget.imagesUrl.length : 3;
+    final moreIndex = widget.imagesUrl.length - 3;
     final imageWidth =
         (MediaQuery.of(context).size.width - 50.sp) / showIndex - 5.sp;
     final borderRadius = showIndex == -3 ? 0.sp : 10.sp;
@@ -160,7 +163,6 @@ class _Yhh_ImageShowState extends State<Yhh_ImageShow> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(showIndex, (index) {
         final tagName = "Tag${widget.firstIndex}$index";
-        print("Create:$tagName");
         return GestureDetector(
           child: Stack(
             alignment: Alignment.center,
@@ -176,53 +178,49 @@ class _Yhh_ImageShowState extends State<Yhh_ImageShow> {
                         bottomLeft: Radius.circular(borderRadius),
                         bottomRight: Radius.circular(borderRadius)),
                   ),
-                  child: Hero(
-                      tag: tagName,
-                      child: Image.memory(
-                        imageTurn[index],
-                        fit: BoxFit.cover,
-                      ))
-                  /*  (index != 2 || moreIndex <= 0)
-                ? const SizedBox.shrink()
-                : Stack(
-                    alignment: Alignment.bottomRight,
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
+                      Positioned(
+                          child: SizedBox(
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: Hero(
+                            tag: tagName,
+                            child: Image.network(
+                              widget.imagesUrl[index],
+                              fit: BoxFit.cover,
+                            )),
+                      )),
                       Positioned(
                           bottom: 5.sp,
                           right: 5.sp,
-                          child: Container(
-                            width: 40.sp,
-                            height: 30.sp,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: Colors.black54,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30.sp))),
-                            child: Text(
-                              "+$moreIndex",
-                              style: TextStyle(fontSize: 18.sp),
-                            ),
-                          ))
+                          child: (index != 2 || moreIndex <= 0)
+                              ? const SizedBox.shrink()
+                              : Container(
+                                  width: 40.sp,
+                                  height: 30.sp,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black54,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.sp))),
+                                  child: Text(
+                                    "+$moreIndex",
+                                    style: TextStyle(fontSize: 18.sp),
+                                  ),
+                                ))
                     ],
-                  ), */
-                  ),
-              Text(tagName)
+                  )),
             ],
           ),
           onTap: () {
-            print("Set:$tagName");
+            // ignore: use_build_context_synchronously
             context.pushTransparentRoute(PhotoShow(
-              images: imageTurn,
               tagName: tagName,
+              imageNames: widget.imageNames,
               iamgeIndex: index,
             ));
-            /* Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return PhotoShow(
-                images: imageTurn,
-                tagName: tagName,
-                iamgeIndex: index,
-              );
-            })); */
           },
         );
       }),
