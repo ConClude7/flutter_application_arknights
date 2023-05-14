@@ -1,3 +1,5 @@
 # flutter_application_arknights
 
 一个很大的饼
+构建时的计划为完成明日方舟的肉鸽模式攻略类似Wegame的云顶之奕功能
+但现在越做越像明日方舟玩家社区
