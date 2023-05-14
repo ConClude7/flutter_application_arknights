@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/models/article.dart';
@@ -179,21 +180,36 @@ class _ArticleCardState extends State<ArticleCard> {
                         data: ThemeData.dark(),
                         child: PullDownButton(
                           itemBuilder: (context) => [
+                            PullDownMenuHeader(
+                              leading: ColoredBox(
+                                color: CupertinoColors.systemBlue
+                                    .resolveFrom(context),
+                              ),
+                              title: "Jhin",
+                              subtitle: "查看此人",
+                            ),
                             PullDownMenuActionsRow.medium(
                                 items: [
                               [
-                                "修改",
+                                "点赞",
                                 () {
-                                  print("修改");
+                                  print("点赞");
                                 },
-                                Icons.tab
+                                CupertinoIcons.hand_thumbsup
                               ],
                               [
-                                "删除",
+                                "评论",
                                 () {
                                   print("删除");
                                 },
-                                Icons.tab
+                                CupertinoIcons.text_bubble
+                              ],
+                              [
+                                "收藏",
+                                () {
+                                  print("删除");
+                                },
+                                CupertinoIcons.heart
                               ]
                             ]
                                     .map((List<dynamic> value) =>
@@ -202,11 +218,23 @@ class _ArticleCardState extends State<ArticleCard> {
                                           title: value[0],
                                           icon: value[2],
                                         ))
-                                    .toList())
+                                    .toList()),
+                            PullDownMenuItem(
+                              onTap: () {},
+                              title: "修改",
+                              icon: CupertinoIcons.pencil,
+                              isDestructive: false,
+                            ),
+                            PullDownMenuItem(
+                              onTap: () {},
+                              title: "删除",
+                              icon: CupertinoIcons.delete,
+                              isDestructive: true,
+                            ),
                           ],
                           buttonBuilder: (BuildContext context,
                               Future<void> Function() showMenu) {
-                            return HappyIcon();
+                            return HappyIcon(onTap: showMenu);
                           },
                         )))
                 : const SizedBox.shrink(),
@@ -254,6 +282,10 @@ class _ArticleCardState extends State<ArticleCard> {
 ); */
 
 class HappyIcon extends StatefulWidget {
+  final void Function() onTap;
+
+  const HappyIcon({super.key, required this.onTap});
+
   @override
   _HappyIconState createState() => _HappyIconState();
 }
@@ -267,7 +299,7 @@ class _HappyIconState extends State<HappyIcon>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 250),
     );
   }
 
@@ -288,15 +320,15 @@ class _HappyIconState extends State<HappyIcon>
       animation: _animationController,
       builder: (context, child) {
         return Transform.rotate(
-          angle:
-              _animationController.value * 2.0 * 3.141592653589793, // 旋转角度为0到2π
+          angle: _animationController.value * 0.5 * pi, // 旋转角度为0到xπ
           child: IconButton(
             onPressed: () {
               startRotationAnimation();
+              widget.onTap();
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.keyboard_command_key,
-              size: 35.0,
+              size: 30.sp,
               color: Colors.orange,
             ),
           ),
