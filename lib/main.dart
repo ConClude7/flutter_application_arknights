@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PersistentStorage().setStorage("url", "http://192.168.0.100:210");
+    PersistentStorage().setStorage("url", "http://124.222.122.118:210");
     return ScreenUtilInit(
         // Size(720, 1280) (375,812)
         designSize: const Size(720, 1280),
