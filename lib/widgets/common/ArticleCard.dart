@@ -139,14 +139,7 @@ class _ArticleCardState extends State<ArticleCard> {
                   ),
                 ],
               ),
-              onTap: () async {
-                print("article.id: ${widget.article.id}");
-                var res = await DartHttpUtils()
-                    .deleteDio("/api/articles/${widget.article.id}", context);
-                if (res['status']) {
-                  MyToast.success(context, "删除成功", null);
-                }
-              },
+              onTap: () async {},
             ),
             SizedBox(
               height: 30.sp,
@@ -200,14 +193,14 @@ class _ArticleCardState extends State<ArticleCard> {
                               [
                                 "评论",
                                 () {
-                                  print("删除");
+                                  print("评论");
                                 },
                                 CupertinoIcons.text_bubble
                               ],
                               [
                                 "收藏",
                                 () {
-                                  print("删除");
+                                  print("收藏");
                                 },
                                 CupertinoIcons.heart
                               ]
@@ -226,7 +219,17 @@ class _ArticleCardState extends State<ArticleCard> {
                               isDestructive: false,
                             ),
                             PullDownMenuItem(
-                              onTap: () {},
+                              onTap: () async {
+                                print("article.id: ${widget.article.id}");
+                                var res = await DartHttpUtils().deleteDio(
+                                    "/api/articles/${widget.article.id}",
+                                    context);
+                                if (res['status']) {
+                                  setState(() {
+                                    MyToast.success(context, "删除成功", null);
+                                  });
+                                }
+                              },
                               title: "删除",
                               icon: CupertinoIcons.delete,
                               isDestructive: true,
@@ -244,42 +247,6 @@ class _ArticleCardState extends State<ArticleCard> {
     );
   }
 }
-
-/* Widget DropDowmButton = PullDownButton(
-  itemBuilder: (context) => [
-    PullDownMenuActionsRow.medium(
-        items: [
-      [
-        "修改",
-        () {
-          print("修改");
-        },
-        Icons.tab
-      ],
-      [
-        "删除",
-        () {
-          print("删除");
-        },
-        Icons.tab
-      ]
-    ]
-            .map((List<dynamic> value) => PullDownMenuItem(
-                  onTap: value[1],
-                  title: value[0],
-                  icon: value[2],
-                ))
-            .toList())
-  ],
-  buttonBuilder: (BuildContext context, Future<void> Function() showMenu) {
-    return IconButton(
-        onPressed: showMenu,
-        icon: const Icon(
-          Icons.keyboard_command_key,
-          size: 10,
-        ));
-  },
-); */
 
 class HappyIcon extends StatefulWidget {
   final void Function() onTap;

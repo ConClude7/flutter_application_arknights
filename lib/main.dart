@@ -10,10 +10,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   debugPaintSizeEnabled = false;
-
+  WidgetsFlutterBinding.ensureInitialized();
   // 顶部状态栏
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  //都不显示，全屏
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top]);
+  // 强制竖屏
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 

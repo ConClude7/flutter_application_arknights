@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/widgets/common/lineBackground.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:particles_fly/particles_fly.dart';
 import '../../widgets/indexPages/bubbleBottomItem.dart';
 import 'FavoritePage.dart';
 import 'HomePage.dart';

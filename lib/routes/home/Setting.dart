@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/common/shared.dart';
 import 'package:flutter_application_arknights/routes/home/index.dart';
 import 'package:flutter_application_arknights/routes/pages/article.dart';
-import 'package:flutter_application_arknights/routes/pages/articleList.dart';
 import 'package:flutter_application_arknights/widgets/common/myToast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/function/pageAnimation.dart';
