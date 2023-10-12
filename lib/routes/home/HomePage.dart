@@ -72,8 +72,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SliverList(
                       delegate: SliverChildListDelegate(
-                        List.generate(10,
-                            (index) => /* articleCard(index: index) */ Container()),
+                        List.generate(
+                            10,
+                            (index) => /* articleCard(index: index) */
+                                Container()),
                       ),
                     ),
                   ],
@@ -87,6 +89,7 @@ class _HomePageState extends State<HomePage> {
               totalLines: 6,
             );
           },
+          future: null,
         ));
   }
 }

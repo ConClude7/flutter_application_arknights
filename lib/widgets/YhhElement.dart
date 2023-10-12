@@ -28,7 +28,7 @@ class Yhh_Swiper extends StatefulWidget {
       required this.width,
       required this.height,
       required this.onTap,
-      this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+      required this.borderRadius,
       required this.images,
       this.align = Alignment.bottomCenter,
       this.direction = Axis.horizontal});
@@ -79,9 +79,9 @@ class _Yhh_SwiperState extends State<Yhh_Swiper> {
         ),
       );
     }).toList();
-
     return ClipRRect(
-      borderRadius: widget.borderRadius,
+      borderRadius:
+          widget.borderRadius ?? BorderRadius.all(Radius.circular(8.sp)),
       child: SizedBox(
         width: widget.width,
         height: widget.height,
