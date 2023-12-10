@@ -2,7 +2,7 @@ name: flutter_application_arknights
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
+  sdk: ">=3.1.5 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,37 +31,71 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # 官方 Icon
+  cupertino_icons: ^1.0.6
+  # 提示
+  fluttertoast: ^8.2.4
+  flutter_easyloading: ^3.0.5
+  sprintf: ^7.0.0
+  # 设备信息
+  device_info_plus: ^9.1.1
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  # 字体库
+  google_fonts: ^6.1.0
+
+  # 实例化 Json=>Model
+  json_model: ^1.0.0
+  build_runner: ^2.4.7
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+
+  # 网络请求
+  dio: ^5.3.4
+
+  #路由
+  fluro: ^2.0.5
+
+  # 屏幕自适应
+  flutter_screenutil: ^5.9.0
+
+  # 扩展image
+  extended_image: ^8.2.0
+
+  #本地存储
+  shared_preferences: ^2.2.2
+  # RiverPod
+  riverpod_annotation: ^2.3.3
+  # HookWidget
+  flutter_hooks: ^0.20.3
+  hooks_riverpod: ^2.4.9
+  # BottomBar
+  stylish_bottom_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Flutter 官方检查器
+  flutter_lints: ^3.0.1
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  # 状态管理
+  riverpod_generator: ^2.3.9
+  custom_lint: ^0.5.7
+  riverpod_lint: ^2.3.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

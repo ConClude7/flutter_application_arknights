@@ -1,0 +1,10 @@
+{
+  "_id": "mongoDB_id",
+  "username": "用户名",
+  "type": "权限",
+  "email?": "邮箱",
+  "signature?": "个性签名",
+  "created": "创建时间",
+  "updated": "更新个人资料时间",
+  "lastLogin": "最后登录时间"
+}

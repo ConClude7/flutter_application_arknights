@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"path": "../.."
+	},
+	{
+		"path": "../../../baike"
+	},
+	{
+		"path": "../../../arknights/moroboot_version_0.0.1"
+	},
+	{
+		"path": "../../../../cloudServer/server"
+	}
+],
+  "settings": {}
+}
