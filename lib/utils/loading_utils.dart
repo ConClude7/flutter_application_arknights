@@ -9,7 +9,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 *
 *
 * */
-class LoadingUtils {
+class HHLoading {
   // loading框
   static showLoading() {
     if (!EasyLoading.isShow) {

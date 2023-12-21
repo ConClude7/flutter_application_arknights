@@ -1,6 +1,7 @@
 {
-  "_id": "mongoDB_id",
+  "id": "mongoDB_id",
   "username": "用户名",
+  "avatar": "图片路径",
   "type": "权限",
   "email?": "邮箱",
   "signature?": "个性签名",

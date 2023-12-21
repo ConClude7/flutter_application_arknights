@@ -16,13 +16,11 @@ Duration _connectTimeout = const Duration(seconds: 15);
 Duration _receiveTimeout = const Duration(seconds: 15);
 Duration _sendTimeout = const Duration(seconds: 10);
 
-/// 基地址 - 待配置
 String _baseUrl = '124.222.122.118:210/api/';
 
 typedef NetSuccessCallback<T> = Function(T data);
 typedef NetErrorCallback = Function(int code, String msg);
 
-/// @weilu https://github.com/simplezhli
 class DioUtils {
   factory DioUtils() => _singleton;
 
@@ -134,7 +132,7 @@ class DioUtils {
     bool isToastErrorMsg = true,
   }) {
     if (isLoading) {
-      LoadingUtils.showLoading();
+      HHLoading.showLoading();
     }
     return _request<T>(
       method.value,
@@ -145,7 +143,7 @@ class DioUtils {
       cancelToken: cancelToken,
     ).then<void>((BaseEntity<T> result) {
       if (isLoading) {
-        LoadingUtils.dismissLoading();
+        HHLoading.dismissLoading();
       }
       if (result.code == 0) {
         onSuccess?.call(result.data);
@@ -157,7 +155,7 @@ class DioUtils {
       }
     }, onError: (dynamic e) {
       if (isLoading) {
-        LoadingUtils.dismissLoading();
+        HHLoading.dismissLoading();
       }
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);
