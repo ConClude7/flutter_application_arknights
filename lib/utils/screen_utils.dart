@@ -6,6 +6,8 @@ class HHSize {
   /// 适配屏幕大小
   static Size screenSize = const Size(375, 812);
 
+  static double appBarHeight = 44.toH;
+
   /// 屏幕宽度 .sw
   static double screenWidget = ScreenUtil().screenWidth;
 
@@ -31,6 +33,8 @@ extension HHSizeExtension on num {
 
   /// 高度
   double get toH => h;
+
+  double get toSp => sp;
 
   /// 圆角
   double get toR => r;

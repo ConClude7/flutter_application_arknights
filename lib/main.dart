@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_arknights/pages/page_tabbar.dart';
 import 'package:flutter_application_arknights/router/app_router.dart';
+import 'package:flutter_application_arknights/theme/dark/theme_dark.dart';
+import 'package:flutter_application_arknights/theme/light/theme_light.dart';
 import 'package:flutter_application_arknights/utils/screen_utils.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,12 +32,11 @@ class MyApp extends ConsumerWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          navigatorKey: HHRouter.globalKey,
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          theme: lightThemeData(context),
+          darkTheme: darkThemeData(context),
           onGenerateRoute: HHRouter.router.generator,
           home: const TabbarPage(),
         );

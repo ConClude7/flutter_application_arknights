@@ -1,6 +1,6 @@
 import 'package:flutter_application_arknights/net/dio_utils.dart';
 
-class NetUtils {
+class HHDio {
   /*
   * get 请求
   * url: 请求的url
