@@ -20,9 +20,24 @@ class HHRouter {
   void defineRoutes() {
     router.define(HHRouterPath.homePage, handler: homeHandler);
     router.define(HHRouterPath.loginPage, handler: loginHandler);
+    router.define(HHRouterPath.articleCreatePage,
+        handler: articleCreateHandler);
+    router.define(HHRouterPath.articleMyListPage,
+        handler: articleMyListHandler);
   }
 
-  static void pop(BuildContext context) {
-    Navigator.of(context).maybePop();
+  static void push(
+    String path, {
+    BuildContext? context,
+  }) {
+    router.navigateTo(context ?? currentContext, path);
+  }
+
+  static void pop(BuildContext? context) {
+    Navigator.of(context ?? currentContext).maybePop();
+  }
+
+  static void replace(String path, {BuildContext? context}) {
+    Navigator.pushReplacementNamed(context ?? currentContext, path);
   }
 }

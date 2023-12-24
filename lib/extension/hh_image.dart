@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_arknights/common/imagePath/image_common.dart';
 import 'package:flutter_application_arknights/router/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -73,8 +74,8 @@ class HHImage extends StatelessWidget {
     this.circularTopRight,
     this.circularBottomLeft,
     this.circularBottomRight,
-  })  : placeholder = '',
-        placeholderError = '',
+  })  : placeholder = ImagePathCommon.placeholderAvatar,
+        placeholderError = ImagePathCommon.placeholderAvatarError,
         _placeholderColor =
             Theme.of(currentContext).colorScheme.onPrimaryContainer,
         _medalUrl = medalUrl,

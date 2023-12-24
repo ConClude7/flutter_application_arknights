@@ -1,11 +1,19 @@
 {
-  "id": "mongoDB_id",
-  "username": "用户名",
-  "avatar": "图片路径",
-  "type": "权限",
-  "email?": "邮箱",
-  "signature?": "个性签名",
-  "created": "创建时间",
-  "updated": "更新个人资料时间",
-  "lastLogin": "最后登录时间"
+  "authorId": "8de02d6b",
+  "title": "标题3",
+  "intro": "简介3",
+  "content": "正文3",
+  "images": ["imageUrl"],
+  "videoUrl": "url",
+  "clickCount": 0,
+  "likeCount": 0,
+  "collectCount": 0,
+  "commentCount": 0,
+  "shareCount": 0,
+  "createTime": 1703422912228,
+  "updateTime": 1703422912228,
+  "lastCommentTime": 1703422912228,
+  "status": 0,
+  "deleted": false,
+  "articleId": "b09c7109-4626-40b2-b44b-f46284237d6f"
 }

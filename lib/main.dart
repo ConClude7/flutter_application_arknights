@@ -4,6 +4,7 @@ import 'package:flutter_application_arknights/router/app_router.dart';
 import 'package:flutter_application_arknights/theme/dark/theme_dark.dart';
 import 'package:flutter_application_arknights/theme/light/theme_light.dart';
 import 'package:flutter_application_arknights/utils/screen_utils.dart';
+import 'package:flutter_application_arknights/utils/storage_util.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,6 +18,7 @@ void init() async {
   WidgetsFlutterBinding.ensureInitialized();
   HHRouter().defineRoutes();
   EasyLoading.init();
+  StorageUtil.init();
 }
 
 class MyApp extends ConsumerWidget {
@@ -39,6 +41,7 @@ class MyApp extends ConsumerWidget {
           darkTheme: darkThemeData(context),
           onGenerateRoute: HHRouter.router.generator,
           home: const TabbarPage(),
+          builder: EasyLoading.init(),
         );
       },
     );
